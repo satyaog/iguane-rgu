@@ -1,0 +1,77 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "iguane-rgu"
+dynamic = ["version"]
+description = 'IGUANE/RGU 2.0: A Theoretical GPU Ranking Index for Deep Learning'
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Satya Ortiz-Gagne", email = "satya.ortiz-gagne@mila.quebec" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "iguane @ git+https://github.com/mila-iqia/IGUANE",
+  # tested with milabench 1.0.0
+  "milabench @ git+https://github.com/mila-iqia/milabench@v1.0.0",
+  "numpy",
+  "pandas",
+  "pyyaml",
+  "seaborn",
+  "scikit-learn",
+  # TODO: Remove tomli when IGUANE stops depending on pip for the lib
+  "tomli"
+]
+
+[project.urls]
+Documentation = "https://github.com/Satya Ortiz-Gagne/iguane-rgu#readme"
+Issues = "https://github.com/Satya Ortiz-Gagne/iguane-rgu/issues"
+Source = "https://github.com/Satya Ortiz-Gagne/iguane-rgu"
+
+[tool.hatch.version]
+path = "src/iguane_rgu/__about__.py"
+
+[tool.hatch.metadata]
+# TODO: Disable allow-direct-references when IGUANE becomes a PyPI package 
+allow-direct-references = true
+
+[tool.hatch.envs.default]
+installer = "uv"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/iguane_rgu tests}"
+
+[tool.coverage.run]
+source_pkgs = ["iguane_rgu", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/iguane_rgu/__about__.py",
+]
+
+[tool.coverage.paths]
+iguane_rgu = ["src/iguane_rgu", "*/iguane-rgu/src/iguane_rgu"]
+tests = ["tests", "*/iguane-rgu/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
