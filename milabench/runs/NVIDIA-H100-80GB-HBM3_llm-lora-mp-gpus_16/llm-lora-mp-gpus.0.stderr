@@ -1,0 +1,112 @@
+INFO:torchtune.utils.logging:Running LoRAFinetuneRecipeDistributed with resolved config:
+
+batch_size: 16
+checkpointer:
+  _component_: torchtune.utils.FullModelHFCheckpointer
+  checkpoint_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B
+  checkpoint_files:
+  - model-00001-of-00030.safetensors
+  - model-00002-of-00030.safetensors
+  - model-00003-of-00030.safetensors
+  - model-00004-of-00030.safetensors
+  - model-00005-of-00030.safetensors
+  - model-00006-of-00030.safetensors
+  - model-00007-of-00030.safetensors
+  - model-00008-of-00030.safetensors
+  - model-00009-of-00030.safetensors
+  - model-00010-of-00030.safetensors
+  - model-00011-of-00030.safetensors
+  - model-00012-of-00030.safetensors
+  - model-00013-of-00030.safetensors
+  - model-00014-of-00030.safetensors
+  - model-00015-of-00030.safetensors
+  - model-00016-of-00030.safetensors
+  - model-00017-of-00030.safetensors
+  - model-00018-of-00030.safetensors
+  - model-00019-of-00030.safetensors
+  - model-00020-of-00030.safetensors
+  - model-00021-of-00030.safetensors
+  - model-00022-of-00030.safetensors
+  - model-00023-of-00030.safetensors
+  - model-00024-of-00030.safetensors
+  - model-00025-of-00030.safetensors
+  - model-00026-of-00030.safetensors
+  - model-00027-of-00030.safetensors
+  - model-00028-of-00030.safetensors
+  - model-00029-of-00030.safetensors
+  - model-00030-of-00030.safetensors
+  model_type: LLAMA3
+  output_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B/
+  recipe_checkpoint: null
+dataset:
+  _component_: torchtune.datasets.alpaca_dataset
+device: cuda
+dtype: bf16
+enable_activation_checkpointing: true
+epochs: 1
+gradient_accumulation_steps: 1
+log_every_n_steps: 1
+log_peak_memory_stats: false
+loss:
+  _component_: torch.nn.CrossEntropyLoss
+lr_scheduler:
+  _component_: torchtune.modules.get_cosine_schedule_with_warmup
+  num_warmup_steps: 100
+max_steps_per_epoch: null
+metric_logger:
+  _component_: torchtune.utils.metric_logging.DiskLogger
+  log_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/metrics
+model:
+  _component_: torchtune.models.llama3_1.lora_llama3_1_70b
+  apply_lora_to_mlp: false
+  apply_lora_to_output: false
+  lora_alpha: 32
+  lora_attn_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  lora_rank: 16
+optimizer:
+  _component_: torch.optim.AdamW
+  lr: 0.0003
+  weight_decay: 0.01
+output_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/output
+repo_id: meta-llama/Meta-Llama-3.1-70B
+resume_from_checkpoint: false
+safetensors: true
+save_adapter_weights_only: false
+seed: null
+shuffle: true
+tokenizer:
+  _component_: torchtune.models.llama3.llama3_tokenizer
+  path: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B/original/tokenizer.model
+
+libibverbs: Warning: couldn't load driver 'libefa-rdmav34.so': libefa-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libirdma-rdmav34.so': libirdma-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libipathverbs-rdmav34.so': libipathverbs-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libocrdma-rdmav34.so': libocrdma-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libmlx4-rdmav34.so': libmlx4-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libbnxt_re-rdmav34.so': libbnxt_re-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libhns-rdmav34.so': libhns-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libmthca-rdmav34.so': libmthca-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libhfi1verbs-rdmav34.so': libhfi1verbs-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'librxe-rdmav34.so': librxe-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libqedr-rdmav34.so': libqedr-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libvmw_pvrdma-rdmav34.so': libvmw_pvrdma-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libcxgb4-rdmav34.so': libcxgb4-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libsiw-rdmav34.so': libsiw-rdmav34.so: cannot open shared object file: No such file or directory
+DEBUG:torchtune.utils.logging:Setting manual seed to local seed 2968319507. Local seed is seed + rank = 2968319507 + 0
+INFO:torchtune.utils.logging:FSDP is enabled. Instantiating Model on CPU for Rank 0 ...
+INFO:torchtune.utils.logging:Model instantiation took 36.73 secs
+INFO:torchtune.utils.logging:Memory stats after model init:
+	GPU peak memory allocation: 43.79 GB
+	GPU peak memory reserved: 48.79 GB
+	GPU peak memory active: 43.79 GB
+INFO:torchtune.utils.logging:Optimizer and loss are initialized.
+INFO:torchtune.utils.logging:Dataset and Sampler are initialized.
+INFO:torchtune.utils.logging:Learning rate scheduler is initialized.
+WARNING:torchtune.utils.logging: Profiling disabled.
+INFO:torchtune.utils.logging: Profiler config after instantiation: {'enabled': False}
+  0%|          | 0/813 [00:00<?, ?it/s]/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+  0%|          | 1/813 [00:06<1:24:46,  6.26s/it]1|1|Loss: 13.404984474182129:   0%|          | 1/813 [00:06<1:24:46,  6.26s/it]1|1|Loss: 13.404984474182129:   0%|          | 2/813 [00:10<1:11:32,  5.29s/it]1|2|Loss: 13.417990684509277:   0%|          | 2/813 [00:10<1:11:32,  5.29s/it]1|2|Loss: 13.417990684509277:   0%|          | 3/813 [00:16<1:10:33,  5.23s/it]1|3|Loss: 13.39804458618164:   0%|          | 3/813 [00:16<1:10:33,  5.23s/it] 1|3|Loss: 13.39804458618164:   0%|          | 4/813 [00:23<1:22:42,  6.13s/it]1|4|Loss: 13.413470268249512:   0%|          | 4/813 [00:23<1:22:42,  6.13s/it]1|4|Loss: 13.413470268249512:   1%|          | 5/813 [00:27<1:13:20,  5.45s/it]1|5|Loss: 13.378986358642578:   1%|          | 5/813 [00:27<1:13:20,  5.45s/it]1|5|Loss: 13.378986358642578:   1%|          | 6/813 [00:33<1:15:50,  5.64s/it]1|6|Loss: 13.396675109863281:   1%|          | 6/813 [00:33<1:15:50,  5.64s/it]1|6|Loss: 13.396675109863281:   1%|          | 7/813 [00:38<1:11:22,  5.31s/it]1|7|Loss: 13.354436874389648:   1%|          | 7/813 [00:38<1:11:22,  5.31s/it]1|7|Loss: 13.354436874389648:   1%|          | 8/813 [00:43<1:08:50,  5.13s/it]1|8|Loss: 13.36061954498291:   1%|          | 8/813 [00:43<1:08:50,  5.13s/it] 1|8|Loss: 13.36061954498291:   1%|          | 9/813 [00:47<1:07:01,  5.00s/it]1|9|Loss: 13.326459884643555:   1%|          | 9/813 [00:47<1:07:01,  5.00s/it]1|9|Loss: 13.326459884643555:   1%|          | 10/813 [00:55<1:18:13,  5.85s/it]1|10|Loss: 13.309636116027832:   1%|          | 10/813 [00:55<1:18:13,  5.85s/it]1|10|Loss: 13.309636116027832:   1%|▏         | 11/813 [00:59<1:11:29,  5.35s/it]1|11|Loss: 13.283064842224121:   1%|▏         | 11/813 [00:59<1:11:29,  5.35s/it]1|11|Loss: 13.283064842224121:   1%|▏         | 12/813 [01:05<1:13:29,  5.50s/it]1|12|Loss: 13.194808959960938:   1%|▏         | 12/813 [01:05<1:13:29,  5.50s/it]1|12|Loss: 13.194808959960938:   2%|▏         | 13/813 [01:10<1:12:10,  5.41s/it]1|13|Loss: 13.118770599365234:   2%|▏         | 13/813 [01:10<1:12:10,  5.41s/it]1|13|Loss: 13.118770599365234:   2%|▏         | 14/813 [01:15<1:09:19,  5.21s/it]1|14|Loss: 12.878220558166504:   2%|▏         | 14/813 [01:15<1:09:19,  5.21s/it]1|14|Loss: 12.878220558166504:   2%|▏         | 15/813 [01:23<1:18:36,  5.91s/it]1|15|Loss: 12.560710906982422:   2%|▏         | 15/813 [01:23<1:18:36,  5.91s/it]1|15|Loss: 12.560710906982422:   2%|▏         | 16/813 [01:28<1:15:40,  5.70s/it]1|16|Loss: 12.344573974609375:   2%|▏         | 16/813 [01:28<1:15:40,  5.70s/it]1|16|Loss: 12.344573974609375:   2%|▏         | 17/813 [01:34<1:17:48,  5.87s/it]1|17|Loss: 11.709033012390137:   2%|▏         | 17/813 [01:34<1:17:48,  5.87s/it]1|17|Loss: 11.709033012390137:   2%|▏         | 18/813 [01:38<1:11:11,  5.37s/it]1|18|Loss: 11.728777885437012:   2%|▏         | 18/813 [01:38<1:11:11,  5.37s/it]1|18|Loss: 11.728777885437012:   2%|▏         | 19/813 [01:43<1:08:44,  5.19s/it]1|19|Loss: 11.181139945983887:   2%|▏         | 19/813 [01:43<1:08:44,  5.19s/it]1|19|Loss: 11.181139945983887:   2%|▏         | 20/813 [01:48<1:08:33,  5.19s/it]1|20|Loss: 11.064010620117188:   2%|▏         | 20/813 [01:48<1:08:33,  5.19s/it]1|20|Loss: 11.064010620117188:   3%|▎         | 21/813 [01:53<1:07:46,  5.13s/it]1|21|Loss: 11.032164573669434:   3%|▎         | 21/813 [01:53<1:07:46,  5.13s/it]1|21|Loss: 11.032164573669434:   3%|▎         | 22/813 [01:58<1:07:16,  5.10s/it]1|22|Loss: 11.02698802947998:   3%|▎         | 22/813 [01:58<1:07:16,  5.10s/it] 1|22|Loss: 11.02698802947998:   3%|▎         | 23/813 [02:05<1:14:43,  5.68s/it]1|23|Loss: 9.879846572875977:   3%|▎         | 23/813 [02:05<1:14:43,  5.68s/it]1|23|Loss: 9.879846572875977:   3%|▎         | 24/813 [02:10<1:10:30,  5.36s/it]1|24|Loss: 10.070585250854492:   3%|▎         | 24/813 [02:10<1:10:30,  5.36s/it]1|24|Loss: 10.070585250854492:   3%|▎         | 25/813 [02:14<1:05:57,  5.02s/it]1|25|Loss: 9.844734191894531:   3%|▎         | 25/813 [02:14<1:05:57,  5.02s/it] 1|25|Loss: 9.844734191894531:   3%|▎         | 26/813 [02:21<1:11:31,  5.45s/it]1|26|Loss: 10.692680358886719:   3%|▎         | 26/813 [02:21<1:11:31,  5.45s/it]1|26|Loss: 10.692680358886719:   3%|▎         | 27/813 [02:26<1:12:04,  5.50s/it]1|27|Loss: 10.523029327392578:   3%|▎         | 27/813 [02:26<1:12:04,  5.50s/it]1|27|Loss: 10.523029327392578:   3%|▎         | 28/813 [02:30<1:04:17,  4.91s/it]1|28|Loss: 9.831250190734863:   3%|▎         | 28/813 [02:30<1:04:17,  4.91s/it] 1|28|Loss: 9.831250190734863:   4%|▎         | 29/813 [02:34<1:03:05,  4.83s/it]1|29|Loss: 9.545499801635742:   4%|▎         | 29/813 [02:34<1:03:05,  4.83s/it]1|29|Loss: 9.545499801635742:   4%|▎         | 30/813 [02:40<1:03:49,  4.89s/it]1|30|Loss: 9.569253921508789:   4%|▎         | 30/813 [02:40<1:03:49,  4.89s/it]1|30|Loss: 9.569253921508789:   4%|▎         | 30/813 [02:40<1:09:36,  5.33s/it]

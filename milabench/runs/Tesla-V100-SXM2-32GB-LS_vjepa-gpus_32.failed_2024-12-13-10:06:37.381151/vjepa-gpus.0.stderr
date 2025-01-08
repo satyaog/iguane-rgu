@@ -1,0 +1,117 @@
+/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/jepa/app/vjepa/utils.py:209: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler() if mixed_precision else None
+/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/main.py:463: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with acc.amp.autocast(dtype=dtype, enabled=mixed_precision):
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/voir", line 8, in <module>
+[rank0]:     sys.exit(main())
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/cli.py", line 128, in main
+[rank0]:     ov(sys.argv[1:] if argv is None else argv)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/phase.py", line 331, in __call__
+[rank0]:     self._run(*args, **kwargs)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/overseer.py", line 242, in _run
+[rank0]:     set_value(func())
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/scriptutils.py", line 37, in <lambda>
+[rank0]:     return lambda: exec(mainsection, glb, glb)
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/main.py", line 656, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/main.py", line 645, in main
+[rank0]:     _main(params)
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/main.py", line 509, in _main
+[rank0]:     (loss, loss_jepa, loss_reg, _new_lr, _new_wd, grad_stats, grad_stats_pred, optim_stats,), gpu_etime_ms = gpu_timer(train_step)
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/jepa/src/utils/logging.py", line 24, in gpu_timer
+[rank0]:     result = closure()
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/main.py", line 464, in train_step
+[rank0]:     h = forward_target(clips)
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/main.py", line 435, in forward_target
+[rank0]:     h = target_encoder(c)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1636, in forward
+[rank0]:     else self._run_ddp_forward(*inputs, **kwargs)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1454, in _run_ddp_forward
+[rank0]:     return self.module(*inputs, **kwargs)  # type: ignore[index]
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/jepa/src/models/utils/multimask.py", line 19, in forward
+[rank0]:     return self.backbone(x)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/jepa/src/models/vision_transformer.py", line 172, in forward
+[rank0]:     x = self.patch_embed(x)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/jepa/src/models/utils/patch_embed.py", line 56, in forward
+[rank0]:     x = self.proj(x).flatten(2).transpose(1, 2)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 608, in forward
+[rank0]:     return self._conv_forward(input, self.weight, self.bias)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 603, in _conv_forward
+[rank0]:     return F.conv3d(
+[rank0]: RuntimeError: CUDA error: too many resources requested for launch
+[rank0]: CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+[rank0]: For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+[rank0]: Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+W1213 10:06:36.141113 140539666117760 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2312225 closing signal SIGTERM
+W1213 10:06:36.141366 140539666117760 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2312225 closing signal SIGTERM
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 680, in run
+    result = self._invoke_run(role)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 836, in _invoke_run
+    run_result = self._monitor_workers(self._worker_group)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", line 367, in _monitor_workers
+    result = self._pcontext.wait(0)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 503, in wait
+    return self._poll()
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 825, in _poll
+    self.close()  # terminate all running procs
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 544, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 861, in _close
+    handler.close(death_sig=death_sig)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/subprocess_handler/subprocess_handler.py", line 74, in close
+    os.killpg(self.proc.pid, death_sig)
+ProcessLookupError: [Errno 3] No such process
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/benchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmate/benchmate/benchrun.py", line 68, in main
+    run(args)
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmate/benchmate/benchrun.py", line 63, in run
+    distrun.run(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 255, in launch_agent
+    result = agent.run()
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 694, in run
+    self._shutdown()
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", line 347, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 544, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 861, in _close
+    handler.close(death_sig=death_sig)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/subprocess_handler/subprocess_handler.py", line 74, in close
+    os.killpg(self.proc.pid, death_sig)
+ProcessLookupError: [Errno 3] No such process

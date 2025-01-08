@@ -1,0 +1,77 @@
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/4
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 4 processes
+----------------------------------------------------------------------------------------------------
+
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+
+  | Name  | Type   | Params | Mode 
+-----------------------------------------
+0 | model | ResNet | 60.2 M | train
+-----------------------------------------
+60.2 M    Trainable params
+0         Non-trainable params
+60.2 M    Total params
+240.771   Total estimated model params size (MB)
+423       Modules in train mode
+0         Modules in eval mode
+W1212 19:41:58.173495 140243476411520 torch/distributed/elastic/agent/server/api.py:688] Received Signals.SIGTERM death signal, shutting down workers
+W1212 19:41:58.173884 140243476411520 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 1285292 closing signal SIGTERM
+W1212 19:41:58.174011 140243476411520 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 1285292 closing signal SIGTERM
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 680, in run
+    result = self._invoke_run(role)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 835, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 79, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 1285235 got signal: 15
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 689, in run
+    self._shutdown(e.sigval)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", line 347, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 544, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 861, in _close
+    handler.close(death_sig=death_sig)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/subprocess_handler/subprocess_handler.py", line 74, in close
+    os.killpg(self.proc.pid, death_sig)
+ProcessLookupError: [Errno 3] No such process
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/benchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmate/benchmate/benchrun.py", line 68, in main
+    run(args)
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmate/benchmate/benchrun.py", line 63, in run
+    distrun.run(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 255, in launch_agent
+    result = agent.run()
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 694, in run
+    self._shutdown()
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", line 347, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 544, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 861, in _close
+    handler.close(death_sig=death_sig)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/subprocess_handler/subprocess_handler.py", line 74, in close
+    os.killpg(self.proc.pid, death_sig)
+ProcessLookupError: [Errno 3] No such process

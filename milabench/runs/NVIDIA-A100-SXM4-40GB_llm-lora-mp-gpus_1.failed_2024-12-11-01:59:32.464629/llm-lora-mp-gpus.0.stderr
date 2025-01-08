@@ -1,0 +1,143 @@
+INFO:torchtune.utils.logging:Running LoRAFinetuneRecipeDistributed with resolved config:
+
+batch_size: 1
+checkpointer:
+  _component_: torchtune.utils.FullModelHFCheckpointer
+  checkpoint_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B
+  checkpoint_files:
+  - model-00001-of-00030.safetensors
+  - model-00002-of-00030.safetensors
+  - model-00003-of-00030.safetensors
+  - model-00004-of-00030.safetensors
+  - model-00005-of-00030.safetensors
+  - model-00006-of-00030.safetensors
+  - model-00007-of-00030.safetensors
+  - model-00008-of-00030.safetensors
+  - model-00009-of-00030.safetensors
+  - model-00010-of-00030.safetensors
+  - model-00011-of-00030.safetensors
+  - model-00012-of-00030.safetensors
+  - model-00013-of-00030.safetensors
+  - model-00014-of-00030.safetensors
+  - model-00015-of-00030.safetensors
+  - model-00016-of-00030.safetensors
+  - model-00017-of-00030.safetensors
+  - model-00018-of-00030.safetensors
+  - model-00019-of-00030.safetensors
+  - model-00020-of-00030.safetensors
+  - model-00021-of-00030.safetensors
+  - model-00022-of-00030.safetensors
+  - model-00023-of-00030.safetensors
+  - model-00024-of-00030.safetensors
+  - model-00025-of-00030.safetensors
+  - model-00026-of-00030.safetensors
+  - model-00027-of-00030.safetensors
+  - model-00028-of-00030.safetensors
+  - model-00029-of-00030.safetensors
+  - model-00030-of-00030.safetensors
+  model_type: LLAMA3
+  output_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B/
+  recipe_checkpoint: null
+dataset:
+  _component_: torchtune.datasets.alpaca_dataset
+device: cuda
+dtype: bf16
+enable_activation_checkpointing: true
+epochs: 1
+gradient_accumulation_steps: 1
+log_every_n_steps: 1
+log_peak_memory_stats: false
+loss:
+  _component_: torch.nn.CrossEntropyLoss
+lr_scheduler:
+  _component_: torchtune.modules.get_cosine_schedule_with_warmup
+  num_warmup_steps: 100
+max_steps_per_epoch: null
+metric_logger:
+  _component_: torchtune.utils.metric_logging.DiskLogger
+  log_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/metrics
+model:
+  _component_: torchtune.models.llama3_1.lora_llama3_1_70b
+  apply_lora_to_mlp: false
+  apply_lora_to_output: false
+  lora_alpha: 32
+  lora_attn_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  lora_rank: 16
+optimizer:
+  _component_: torch.optim.AdamW
+  lr: 0.0003
+  weight_decay: 0.01
+output_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/output
+repo_id: meta-llama/Meta-Llama-3.1-70B
+resume_from_checkpoint: false
+safetensors: true
+save_adapter_weights_only: false
+seed: null
+shuffle: true
+tokenizer:
+  _component_: torchtune.models.llama3.llama3_tokenizer
+  path: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B/original/tokenizer.model
+
+DEBUG:torchtune.utils.logging:Setting manual seed to local seed 3521698991. Local seed is seed + rank = 3521698991 + 0
+INFO:torchtune.utils.logging:FSDP is enabled. Instantiating Model on CPU for Rank 0 ...
+INFO:torchtune.utils.logging:Model instantiation took 51.84 secs
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py", line 795, in <module>
+[rank0]:     sys.exit(recipe_main())
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/config/_parse.py", line 50, in wrapper
+[rank0]:     sys.exit(recipe_main(conf))
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py", line 781, in recipe_main
+[rank0]:     recipe.setup(cfg=cfg)
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py", line 222, in setup
+[rank0]:     self._model = self._setup_model(
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py", line 417, in _setup_model
+[rank0]:     model = FSDP(
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 509, in __init__
+[rank0]:     _init_param_handle_from_module(
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/_init_utils.py", line 596, in _init_param_handle_from_module
+[rank0]:     _sync_module_params_and_buffers(
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/_init_utils.py", line 1094, in _sync_module_params_and_buffers
+[rank0]:     _sync_params_and_buffers(
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/utils.py", line 326, in _sync_params_and_buffers
+[rank0]:     dist._broadcast_coalesced(
+[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.96 GiB. GPU 0 has a total capacity of 39.39 GiB of which 1.90 GiB is free. Including non-PyTorch memory, this process has 37.48 GiB memory in use. Of the allocated memory 35.89 GiB is allocated by PyTorch, and 201.11 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+W1211 01:59:28.510434 139762645988480 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 3241763 closing signal SIGTERM
+W1211 01:59:28.511280 139762645988480 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 3241765 closing signal SIGTERM
+W1211 01:59:28.511463 139762645988480 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 3241766 closing signal SIGTERM
+E1211 01:59:31.030321 139762645988480 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 1) local_rank: 1 (pid: 3241764) of binary: /network/scratch/o/ortizgas/data/milabench/venv/torch/bin/python
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/tune", line 8, in <module>
+    sys.exit(main())
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/tune.py", line 49, in main
+    parser.run(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/tune.py", line 43, in run
+    args.func(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/run.py", line 177, in _run_cmd
+    self._run_distributed(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/run.py", line 88, in _run_distributed
+    run(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-12-11_01:59:28
+  host      : cn-d002.server.mila.quebec
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 3241764)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

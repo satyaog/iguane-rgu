@@ -1,0 +1,151 @@
+{"event": "config", "data": {"system": {"arch": "cuda", "sshkey": null, "nodes": [{"name": "local", "ip": "127.0.0.1", "sshport": 22, "user": "root", "main": true, "hostname": "cn-e002.server.mila.quebec", "local": true}], "self": {"name": "local", "ip": "127.0.0.1", "sshport": 22, "user": "root", "main": true, "hostname": "cn-e002.server.mila.quebec", "local": true}}, "dirs": {"base": "/network/scratch/o/ortizgas/data/milabench", "venv": "/network/scratch/o/ortizgas/data/milabench/venv/torch", "data": "/network/scratch/o/ortizgas/data/milabench/data", "runs": "/network/scratch/o/ortizgas/data/milabench/runs", "extra": "/network/scratch/o/ortizgas/data/milabench/extra/lightning-gpus", "cache": "/network/scratch/o/ortizgas/data/milabench/cache"}, "group": "lightning-gpus", "install_group": "torch", "install_variant": "cuda", "run_name": "Tesla-V100-SXM2-32GB-LS_lightning_384.staging", "enabled": true, "capabilities": {"nodes": 1}, "max_duration": 600, "voir": {"options": {"stop": 60, "interval": "1s"}}, "validation": {"usage": {"gpu_load_threshold": 0.5, "gpu_mem_threshold": 0.5}}, "config_base": "/home/mila/o/ortizgas/CODE/milabench/config", "config_file": "/home/mila/o/ortizgas/CODE/milabench/config/standard.yaml", "definition": "/home/mila/o/ortizgas/CODE/milabench/benchmarks/lightning", "tags": ["lightning", "multigpu"], "argv": {"--epochs": 10, "--num-workers": "auto({n_worker}, 8)", "--loader": "pytorch", "--data": "{milabench_data}/FakeImageNet", "--model": "resnet152", "--batch-size": 256}, "num_machines": 1, "plan": {"method": "njobs", "n": 1}, "weight": 1.0, "name": "lightning-gpus", "tag": ["lightning-gpus", "0"], "job-number": 0, "devices": [0]}, "pipe": null}
+{"event": "meta", "data": {"cpu": {"count": 40, "brand": "Intel(R) Xeon(R) CPU E5-2698 v4 @ 2.20GHz"}, "os": {"sysname": "Linux", "nodename": "cn-e002.server.mila.quebec", "release": "5.15.0-1048-nvidia", "version": "#48-Ubuntu SMP Thu Mar 21 18:19:02 UTC 2024", "machine": "x86_64"}, "accelerators": {"arch": "cuda", "gpus": {"0": {"minor_number": "0", "device": 0, "product": "Tesla V100-SXM2-32GB-LS", "memory": {"used": 267.0, "total": 32768.0}, "utilization": {"compute": 1.0, "memory": 14}, "temperature": 37.0, "power": 74.768, "selection_variable": "CUDA_VISIBLE_DEVICES"}}}, "date": 1734063806.31119, "milabench": {"tag": "v1.0.0_RC1-13-g7a90b16", "commit": "7a90b1691650232ecd63abded0b7be84bb294c05", "date": "2024-11-08 11:28:56 -0500"}, "pytorch": {"torch": "2.4.0+cu121", "compiler": "GCC 9.3", "cpp": "C++ Version: 201703", "intel": "Intel(R) oneAPI Math Kernel Library Version 2022.2-Product Build 20220804 for Intel(R) 64 architecture applications", "mkl": "OpenMP 201511 (a.k.a. OpenMP 4.5)", "openmp": "OpenMP 201511 (a.k.a. OpenMP 4.5)", "lapack": "LAPACK is enabled (usually provided by MKL)", "nnpack": "NNPACK is enabled", "cpu": "CPU capability usage: AVX2", "build_settings": {"BLAS_INFO": "mkl", "BUILD_TYPE": "Release", "CUDA_VERSION": "12.1", "CUDNN_VERSION": "9.1.0", "CXX_COMPILER": "/opt/rh/devtoolset-9/root/usr/bin/c++", "CXX_FLAGS": "-D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow", "LAPACK_INFO": "mkl", "PERF_WITH_AVX": "1", "PERF_WITH_AVX2": "1", "PERF_WITH_AVX512": "1", "TORCH_VERSION": "2.4.0", "USE_CUDA": "ON", "USE_CUDNN": "ON", "USE_CUSPARSELT": "1", "USE_EXCEPTION_PTR": "1", "USE_GFLAGS": "OFF", "USE_GLOG": "OFF", "USE_GLOO": "ON", "USE_MKL": "ON", "USE_MKLDNN": "ON", "USE_MPI": "OFF", "USE_NCCL": "1", "USE_NNPACK": "ON", "USE_OPENMP": "ON", "USE_ROCM": "OFF", "USE_ROCM_KERNEL_ASSERT": "OFF"}}}, "pipe": null}
+{"event": "start", "data": {"command": ["/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/voir", "--config", "/network/scratch/o/ortizgas/data/milabench/extra/lightning-gpus/voirconf-lightning-gpus.0-0efae956f1553a76c1e03985181900f5.json", "/home/mila/o/ortizgas/CODE/milabench/benchmarks/lightning/main.py", "--epochs", "10", "--num-workers", "8", "--loader", "pytorch", "--data", "/network/scratch/o/ortizgas/data/milabench/data/FakeImageNet", "--model", "resnet152", "--batch-size", "384"], "time": 1734045806.4046597}, "pipe": null}
+{"event": "phase", "data": {"name": "init"}, "pipe": "data"}
+{"event": "phase", "data": {"name": "parse_args"}, "pipe": "data"}
+{"event": "phase", "data": {"name": "load_script"}, "pipe": "data"}
+{"event": "phase", "data": {"name": "run_script"}, "pipe": "data"}
+{"event": "line", "data": "Using 16bit Automatic Mixed Precision (AMP)\n", "pipe": "stderr"}
+{"event": "line", "data": "GPU available: True (cuda), used: True\n", "pipe": "stderr"}
+{"event": "line", "data": "TPU available: False, using: 0 TPU cores\n", "pipe": "stderr"}
+{"event": "line", "data": "HPU available: False, using: 0 HPUs\n", "pipe": "stderr"}
+{"event": "line", "data": "Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1\n", "pipe": "stderr"}
+{"event": "line", "data": "----------------------------------------------------------------------------------------------------\n", "pipe": "stderr"}
+{"event": "line", "data": "distributed_backend=nccl\n", "pipe": "stderr"}
+{"event": "line", "data": "All distributed processes registered. Starting with 1 processes\n", "pipe": "stderr"}
+{"event": "line", "data": "----------------------------------------------------------------------------------------------------\n", "pipe": "stderr"}
+{"event": "line", "data": "\n", "pipe": "stderr"}
+{"event": "line", "data": "LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]\n", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1734045840.0694385, "gpudata": {"0": {"memory": [282.625, 32768.0], "load": 0.0, "temperature": 34.0, "power": 44.969}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1734045840.0694385, "process": {"pid": 1197651, "load": 0.0, "num": 27, "read_bytes": 341316074.0, "write_bytes": 4096.0, "read_chars": 57023109.0, "write_chars": 991.0, "memory": [1118945280.0, 540098572288]}}, "pipe": "data"}
+{"event": "line", "data": "\n", "pipe": "stderr"}
+{"event": "line", "data": "  | Name  | Type   | Params | Mode \n", "pipe": "stderr"}
+{"event": "line", "data": "-----------------------------------------\n", "pipe": "stderr"}
+{"event": "line", "data": "0 | model | ResNet | 60.2 M | train\n", "pipe": "stderr"}
+{"event": "line", "data": "-----------------------------------------\n", "pipe": "stderr"}
+{"event": "line", "data": "60.2 M    Trainable params\n", "pipe": "stderr"}
+{"event": "line", "data": "0         Non-trainable params\n", "pipe": "stderr"}
+{"event": "line", "data": "60.2 M    Total params\n", "pipe": "stderr"}
+{"event": "line", "data": "240.771   Total estimated model params size (MB)\n", "pipe": "stderr"}
+{"event": "line", "data": "423       Modules in train mode\n", "pipe": "stderr"}
+{"event": "line", "data": "0         Modules in eval mode\n", "pipe": "stderr"}
+{"event": "line", "data": "SLURM auto-requeueing enabled. Setting signal handlers.\n", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [0, 100], "task": "early_stop"}, "pipe": "data"}
+{"event": "data", "data": {"progress": [0, 100], "task": "early_stop"}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1734045841.3455005, "gpudata": {"0": {"memory": [1380.625, 32768.0], "load": 0.13, "temperature": 35.0, "power": 50.722}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1734045841.3455005, "process": {"pid": 1197651, "load": 2.1725000000000003, "num": 26, "read_bytes": 415230411.0, "write_bytes": 8192.0, "read_chars": 105951769.0, "write_chars": 3433.0, "memory": [3916742656.0, 540098572288]}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1734045844.6179512, "gpudata": {"0": {"memory": [1436.625, 32768.0], "load": 0.0, "temperature": 35.0, "power": 50.722}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1734045844.6179512, "process": {"pid": 1197651, "load": 8.190000000000001, "num": 24, "read_bytes": 885832918.0, "write_bytes": 8192.0, "read_chars": 570614445.0, "write_chars": 68533.0, "memory": [8319754240.0, 540098572288]}}, "pipe": "data"}
+{"event": "error", "data": {"type": "OutOfMemoryError", "message": "CUDA out of memory. Tried to allocate 148.00 MiB. GPU 0 has a total capacity of 31.74 GiB of which 43.38 MiB is free. Including non-PyTorch memory, this process has 31.69 GiB memory in use. Of the allocated memory 30.87 GiB is allocated by PyTorch, and 144.03 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"}, "pipe": "data"}
+{"event": "phase", "data": {"name": "finalize"}, "pipe": "data"}
+{"event": "line", "data": "[rank0]: Traceback (most recent call last):\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/voir\", line 8, in <module>\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     sys.exit(main())\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/cli.py\", line 128, in main\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     ov(sys.argv[1:] if argv is None else argv)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/phase.py\", line 331, in __call__\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     self._run(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/overseer.py\", line 242, in _run\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     set_value(func())\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/scriptutils.py\", line 37, in <lambda>\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return lambda: exec(mainsection, glb, glb)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/home/mila/o/ortizgas/CODE/milabench/benchmarks/lightning/main.py\", line 101, in <module>\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     main()\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/home/mila/o/ortizgas/CODE/milabench/benchmarks/lightning/main.py\", line 96, in main\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     trainer.fit(model=model, train_dataloaders=loader)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py\", line 538, in fit\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     call._call_and_handle_interrupt(\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py\", line 46, in _call_and_handle_interrupt\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return trainer.strategy.launcher.launch(trainer_fn, *args, trainer=trainer, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/strategies/launchers/subprocess_script.py\", line 105, in launch\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return function(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py\", line 574, in _fit_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     self._run(model, ckpt_path=ckpt_path)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py\", line 981, in _run\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     results = self._run_stage()\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py\", line 1025, in _run_stage\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     self.fit_loop.run()\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py\", line 205, in run\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     self.advance()\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py\", line 363, in advance\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     self.epoch_loop.run(self._data_fetcher)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/training_epoch_loop.py\", line 140, in run\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     self.advance(data_fetcher)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/training_epoch_loop.py\", line 250, in advance\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     batch_output = self.automatic_optimization.run(trainer.optimizers[0], batch_idx, kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py\", line 190, in run\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     self._optimizer_step(batch_idx, closure)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py\", line 268, in _optimizer_step\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     call._call_lightning_module_hook(\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py\", line 167, in _call_lightning_module_hook\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     output = fn(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/core/module.py\", line 1306, in optimizer_step\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     optimizer.step(closure=optimizer_closure)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/core/optimizer.py\", line 153, in step\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     step_output = self._strategy.optimizer_step(self._optimizer, closure, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/strategies/ddp.py\", line 270, in optimizer_step\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     optimizer_output = super().optimizer_step(optimizer, closure, model, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py\", line 238, in optimizer_step\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return self.precision_plugin.optimizer_step(optimizer, model=model, closure=closure, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/plugins/precision/amp.py\", line 78, in optimizer_step\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     closure_result = closure()\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py\", line 144, in __call__\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     self._result = self.closure(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return func(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py\", line 129, in closure\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     step_output = self._step_fn()\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/optimization/automatic.py\", line 317, in _training_step\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     training_step_output = call._call_strategy_hook(trainer, \"training_step\", *kwargs.values())\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py\", line 319, in _call_strategy_hook\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     output = fn(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py\", line 389, in training_step\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return self._forward_redirection(self.model, self.lightning_module, \"training_step\", *args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py\", line 640, in __call__\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     wrapper_output = wrapper_module(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return self._call_impl(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return forward_call(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/parallel/distributed.py\", line 1636, in forward\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     else self._run_ddp_forward(*inputs, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/parallel/distributed.py\", line 1454, in _run_ddp_forward\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return self.module(*inputs, **kwargs)  # type: ignore[index]\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return self._call_impl(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return forward_call(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/strategies/strategy.py\", line 633, in wrapped_forward\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     out = method(*_args, **_kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/home/mila/o/ortizgas/CODE/milabench/benchmarks/lightning/main.py\", line 27, in training_step\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     p = self.model(x)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return self._call_impl(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return forward_call(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchvision/models/resnet.py\", line 285, in forward\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return self._forward_impl(x)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchvision/models/resnet.py\", line 275, in _forward_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     x = self.layer3(x)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return self._call_impl(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return forward_call(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/container.py\", line 219, in forward\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     input = module(input)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return self._call_impl(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return forward_call(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchvision/models/resnet.py\", line 154, in forward\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     out = self.conv3(out)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1553, in _wrapped_call_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return self._call_impl(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1562, in _call_impl\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return forward_call(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/conv.py\", line 458, in forward\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return self._conv_forward(input, self.weight, self.bias)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/conv.py\", line 454, in _conv_forward\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return F.conv2d(input, weight, bias, self.stride,\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 148.00 MiB. GPU 0 has a total capacity of 31.74 GiB of which 43.38 MiB is free. Including non-PyTorch memory, this process has 31.69 GiB memory in use. Of the allocated memory 30.87 GiB is allocated by PyTorch, and 144.03 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "pipe": "stderr"}
+{"event": "end", "data": {"command": ["/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/voir", "--config", "/network/scratch/o/ortizgas/data/milabench/extra/lightning-gpus/voirconf-lightning-gpus.0-0efae956f1553a76c1e03985181900f5.json", "/home/mila/o/ortizgas/CODE/milabench/benchmarks/lightning/main.py", "--epochs", "10", "--num-workers", "8", "--loader", "pytorch", "--data", "/network/scratch/o/ortizgas/data/milabench/data/FakeImageNet", "--model", "resnet152", "--batch-size", "384"], "time": 1734045853.9833028, "return_code": 1}, "pipe": null}

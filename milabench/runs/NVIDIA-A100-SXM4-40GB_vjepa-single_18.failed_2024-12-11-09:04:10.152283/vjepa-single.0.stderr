@@ -1,0 +1,32 @@
+Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/jepa/app/vjepa/utils.py:209: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler() if mixed_precision else None
+Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/main.py:463: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with acc.amp.autocast(dtype=dtype, enabled=mixed_precision):
+/home/mila/o/ortizgas/env/cp310/lib/python3.10/contextlib.py:103: FutureWarning: `torch.backends.cuda.sdp_kernel()` is deprecated. In the future, this context manager will be removed. Please see `torch.nn.attention.sdpa_kernel()` for the new context manager, with updated signature.
+  self.gen = func(*args, **kwds)
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/voir", line 8, in <module>
+[rank0]:     sys.exit(main())
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/cli.py", line 128, in main
+[rank0]:     ov(sys.argv[1:] if argv is None else argv)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/phase.py", line 331, in __call__
+[rank0]:     self._run(*args, **kwargs)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/overseer.py", line 242, in _run
+[rank0]:     set_value(func())
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/scriptutils.py", line 37, in <lambda>
+[rank0]:     return lambda: exec(mainsection, glb, glb)
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/main.py", line 656, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/main.py", line 645, in main
+[rank0]:     _main(params)
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/main.py", line 509, in _main
+[rank0]:     (loss, loss_jepa, loss_reg, _new_lr, _new_wd, grad_stats, grad_stats_pred, optim_stats,), gpu_etime_ms = gpu_timer(train_step)
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/jepa/src/utils/logging.py", line 24, in gpu_timer
+[rank0]:     result = closure()
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/main.py", line 467, in train_step
+[rank0]:     pstd_z = reg_fn(z)  # predictor variance across patches
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/main.py", line 459, in reg_fn
+[rank0]:     return sum([torch.sqrt(zi.var(dim=1) + 0.0001) for zi in z]) / len(z)
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/vjepa/main.py", line 459, in <listcomp>
+[rank0]:     return sum([torch.sqrt(zi.var(dim=1) + 0.0001) for zi in z]) / len(z)
+[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 450.00 MiB. GPU 0 has a total capacity of 39.39 GiB of which 166.38 MiB is free. Including non-PyTorch memory, this process has 39.21 GiB memory in use. Of the allocated memory 36.05 GiB is allocated by PyTorch, and 2.65 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

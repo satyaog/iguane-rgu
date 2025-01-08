@@ -1,0 +1,165 @@
+INFO:torchtune.utils.logging:Running LoRAFinetuneRecipeDistributed with resolved config:
+
+batch_size: 1
+checkpointer:
+  _component_: torchtune.utils.FullModelHFCheckpointer
+  checkpoint_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B
+  checkpoint_files:
+  - model-00001-of-00030.safetensors
+  - model-00002-of-00030.safetensors
+  - model-00003-of-00030.safetensors
+  - model-00004-of-00030.safetensors
+  - model-00005-of-00030.safetensors
+  - model-00006-of-00030.safetensors
+  - model-00007-of-00030.safetensors
+  - model-00008-of-00030.safetensors
+  - model-00009-of-00030.safetensors
+  - model-00010-of-00030.safetensors
+  - model-00011-of-00030.safetensors
+  - model-00012-of-00030.safetensors
+  - model-00013-of-00030.safetensors
+  - model-00014-of-00030.safetensors
+  - model-00015-of-00030.safetensors
+  - model-00016-of-00030.safetensors
+  - model-00017-of-00030.safetensors
+  - model-00018-of-00030.safetensors
+  - model-00019-of-00030.safetensors
+  - model-00020-of-00030.safetensors
+  - model-00021-of-00030.safetensors
+  - model-00022-of-00030.safetensors
+  - model-00023-of-00030.safetensors
+  - model-00024-of-00030.safetensors
+  - model-00025-of-00030.safetensors
+  - model-00026-of-00030.safetensors
+  - model-00027-of-00030.safetensors
+  - model-00028-of-00030.safetensors
+  - model-00029-of-00030.safetensors
+  - model-00030-of-00030.safetensors
+  model_type: LLAMA3
+  output_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B/
+  recipe_checkpoint: null
+dataset:
+  _component_: torchtune.datasets.alpaca_dataset
+device: cuda
+dtype: bf16
+enable_activation_checkpointing: true
+epochs: 1
+gradient_accumulation_steps: 1
+log_every_n_steps: 1
+log_peak_memory_stats: false
+loss:
+  _component_: torch.nn.CrossEntropyLoss
+lr_scheduler:
+  _component_: torchtune.modules.get_cosine_schedule_with_warmup
+  num_warmup_steps: 100
+max_steps_per_epoch: null
+metric_logger:
+  _component_: torchtune.utils.metric_logging.DiskLogger
+  log_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/metrics
+model:
+  _component_: torchtune.models.llama3_1.lora_llama3_1_70b
+  apply_lora_to_mlp: false
+  apply_lora_to_output: false
+  lora_alpha: 32
+  lora_attn_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  lora_rank: 16
+optimizer:
+  _component_: torch.optim.AdamW
+  lr: 0.0003
+  weight_decay: 0.01
+output_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/output
+repo_id: meta-llama/Meta-Llama-3.1-70B
+resume_from_checkpoint: false
+safetensors: true
+save_adapter_weights_only: false
+seed: null
+shuffle: true
+tokenizer:
+  _component_: torchtune.models.llama3.llama3_tokenizer
+  path: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B/original/tokenizer.model
+
+DEBUG:torchtune.utils.logging:Setting manual seed to local seed 3539557365. Local seed is seed + rank = 3539557365 + 0
+INFO:torchtune.utils.logging:FSDP is enabled. Instantiating Model on CPU for Rank 0 ...
+INFO:torchtune.utils.logging:Model instantiation took 48.73 secs
+INFO:torchtune.utils.logging:Memory stats after model init:
+	GPU peak memory allocation: 43.79 GB
+	GPU peak memory reserved: 44.58 GB
+	GPU peak memory active: 43.79 GB
+INFO:torchtune.utils.logging:Optimizer and loss are initialized.
+INFO:torchtune.utils.logging:Dataset and Sampler are initialized.
+INFO:torchtune.utils.logging:Learning rate scheduler is initialized.
+WARNING:torchtune.utils.logging: Profiling disabled.
+INFO:torchtune.utils.logging: Profiler config after instantiation: {'enabled': False}
+  0%|          | 0/13001 [00:00<?, ?it/s]/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py", line 795, in <module>
+[rank0]:     sys.exit(recipe_main())
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/config/_parse.py", line 50, in wrapper
+[rank0]:     sys.exit(recipe_main(conf))
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py", line 787, in recipe_main
+[rank0]:     recipe.train()
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py", line 677, in train
+[rank0]:     loss.backward()
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/_tensor.py", line 521, in backward
+[rank0]:     torch.autograd.backward(
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/autograd/__init__.py", line 289, in backward
+[rank0]:     _engine_run_backward(
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/autograd/graph.py", line 768, in _engine_run_backward
+[rank0]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 682, in _pre_backward_hook
+[rank0]:     _prefetch_handle(state, handle, _PrefetchMode.BACKWARD)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 1222, in _prefetch_handle
+[rank0]:     _unshard(state, handle, state._unshard_stream, state._pre_unshard_stream)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 300, in _unshard
+[rank0]:     handle.unshard()
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/_flat_param.py", line 1310, in unshard
+[rank0]:     unsharded_flat_param = self._alloc_padded_unsharded_flat_param()
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/_flat_param.py", line 1337, in _alloc_padded_unsharded_flat_param
+[rank0]:     _alloc_storage(unsharded_flat_param, flat_param._padded_unsharded_size)  # type: ignore[attr-defined]
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/utils.py", line 186, in _alloc_storage
+[rank0]:     tensor._typed_storage()._resize_(size.numel())
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/storage.py", line 1027, in _resize_
+[rank0]:     self._untyped_storage.resize_(size * self._element_size())
+[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.60 GiB. GPU 0 has a total capacity of 44.47 GiB of which 373.19 MiB is free. Including non-PyTorch memory, this process has 44.10 GiB memory in use. Of the allocated memory 43.65 GiB is allocated by PyTorch, and 128.37 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+  0%|          | 0/13001 [00:17<?, ?it/s]
+W1211 15:05:14.288675 140719295083648 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 1126495 closing signal SIGTERM
+W1211 15:05:14.288949 140719295083648 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 1126496 closing signal SIGTERM
+W1211 15:05:14.289099 140719295083648 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 1126498 closing signal SIGTERM
+E1211 15:05:14.805200 140719295083648 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 1) local_rank: 2 (pid: 1126497) of binary: /network/scratch/o/ortizgas/data/milabench/venv/torch/bin/python
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/tune", line 8, in <module>
+    sys.exit(main())
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/tune.py", line 49, in main
+    parser.run(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/tune.py", line 43, in run
+    args.func(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/run.py", line 177, in _run_cmd
+    self._run_distributed(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/run.py", line 88, in _run_distributed
+    run(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-12-11_15:05:14
+  host      : cn-c009.server.mila.quebec
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 1126497)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

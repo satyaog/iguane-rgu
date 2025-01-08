@@ -1,0 +1,41 @@
+/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/transformers/tokenization_utils_base.py:1601: FutureWarning: `clean_up_tokenization_spaces` was not set. It will be set to `True` by default. This behavior will be depracted in transformers v4.45, and will be then set to `False` by default. For more details check this issue: https://github.com/huggingface/transformers/issues/31884
+  warnings.warn(
+Some weights of GPTNeoXForSequenceClassification were not initialized from the model checkpoint at EleutherAI/pythia-160m and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Some weights of GPTNeoXForSequenceClassification were not initialized from the model checkpoint at EleutherAI/pythia-160m and are newly initialized: ['score.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+  0%|          | 0/64 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/rlhf/main.py", line 133, in <module>
+    main()
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/rlhf/main.py", line 124, in main
+    trainer.train()
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/trl/trainer/ppov2_trainer.py", line 436, in train
+    output, vpred_temp = forward(model, mb_query_responses, tokenizer.pad_token_id)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/trl/trainer/utils.py", line 1039, in forward
+    return model(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/accelerate/utils/operations.py", line 820, in forward
+    return model_forward(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/accelerate/utils/operations.py", line 808, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 43, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/trl/trainer/ppov2_trainer.py", line 65, in forward
+    return self.policy(**kwargs), logits
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/transformers/models/gpt_neox/modeling_gpt_neox.py", line 1003, in forward
+    lm_logits = self.embed_out(hidden_states)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 117, in forward
+    return F.linear(input, self.weight, self.bias)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.88 GiB. GPU 0 has a total capacity of 31.74 GiB of which 485.38 MiB is free. Including non-PyTorch memory, this process has 31.26 GiB memory in use. Of the allocated memory 30.07 GiB is allocated by PyTorch, and 841.90 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+  0%|          | 0/64 [00:18<?, ?it/s]

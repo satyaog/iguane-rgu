@@ -1,0 +1,82 @@
+Error.  nthreads cannot be larger than environment variable "NUMEXPR_MAX_THREADS" (64)INFO:torchtune.utils.logging:Running LoRAFinetuneRecipeSingleDevice with resolved config:
+
+batch_size: 10
+checkpointer:
+  _component_: torchtune.utils.FullModelMetaCheckpointer
+  checkpoint_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_8B/original
+  checkpoint_files:
+  - consolidated.00.pth
+  model_type: LLAMA3
+  output_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_8B/
+  recipe_checkpoint: null
+compile: false
+dataset:
+  _component_: torchtune.datasets.alpaca_cleaned_dataset
+device: cuda
+dtype: bf16
+enable_activation_checkpointing: true
+epochs: 1
+gradient_accumulation_steps: 8
+log_every_n_steps: 1
+log_peak_memory_stats: false
+loss:
+  _component_: torch.nn.CrossEntropyLoss
+lr_scheduler:
+  _component_: torchtune.modules.get_cosine_schedule_with_warmup
+  num_warmup_steps: 100
+max_steps_per_epoch: null
+metric_logger:
+  _component_: torchtune.utils.metric_logging.DiskLogger
+  log_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-single/metrics
+model:
+  _component_: torchtune.models.llama3_1.lora_llama3_1_8b
+  apply_lora_to_mlp: false
+  apply_lora_to_output: false
+  lora_alpha: 16
+  lora_attn_modules:
+  - q_proj
+  - v_proj
+  lora_rank: 8
+optimizer:
+  _component_: torch.optim.AdamW
+  lr: 0.0003
+  weight_decay: 0.01
+output_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-single/output
+profiler:
+  _component_: torchtune.utils.setup_torch_profiler
+  active_steps: 2
+  cpu: true
+  cuda: true
+  enabled: false
+  num_cycles: 1
+  output_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-single/output/profiling_outputs
+  profile_memory: false
+  record_shapes: true
+  wait_steps: 5
+  warmup_steps: 5
+  with_flops: false
+  with_stack: false
+repo_id: meta-llama/Meta-Llama-3.1-8B
+resume_from_checkpoint: false
+seed: null
+shuffle: true
+tokenizer:
+  _component_: torchtune.models.llama3.llama3_tokenizer
+  path: /network/scratch/o/ortizgas/data/milabench/data/llama3_8B/original/tokenizer.model
+
+DEBUG:torchtune.utils.logging:Setting manual seed to local seed 1086046025. Local seed is seed + rank = 1086046025 + 0
+INFO:torchtune.utils.logging:Model is initialized with precision torch.bfloat16.
+INFO:torchtune.utils.logging:Memory stats after model init:
+	GPU peak memory allocation: 16.50 GB
+	GPU peak memory reserved: 16.64 GB
+	GPU peak memory active: 16.50 GB
+INFO:torchtune.utils.logging:Tokenizer is initialized from file.
+INFO:torchtune.utils.logging:Optimizer and loss are initialized.
+INFO:torchtune.utils.logging:Loss is initialized.
+INFO:torchtune.utils.logging:Dataset and Sampler are initialized.
+INFO:torchtune.utils.logging:Learning rate scheduler is initialized.
+WARNING:torchtune.utils.logging: Profiling disabled.
+INFO:torchtune.utils.logging: Profiler config after instantiation: {'enabled': False}
+  0%|          | 0/647 [00:00<?, ?it/s]/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+  0%|          | 1/647 [00:06<1:08:31,  6.37s/it]1|1|Loss: 11.761783599853516:   0%|          | 1/647 [00:06<1:08:31,  6.37s/it]1|1|Loss: 11.761783599853516:   0%|          | 2/647 [00:12<1:06:24,  6.18s/it]1|2|Loss: 11.761783599853516:   0%|          | 2/647 [00:12<1:06:24,  6.18s/it]1|2|Loss: 11.761783599853516:   0%|          | 3/647 [00:18<1:04:18,  5.99s/it]1|3|Loss: 11.761783599853516:   0%|          | 3/647 [00:18<1:04:18,  5.99s/it]1|3|Loss: 11.761783599853516:   1%|          | 4/647 [00:24<1:05:35,  6.12s/it]1|4|Loss: 11.761783599853516:   1%|          | 4/647 [00:24<1:05:35,  6.12s/it]1|4|Loss: 11.761783599853516:   1%|          | 5/647 [00:30<1:04:56,  6.07s/it]1|5|Loss: 11.761783599853516:   1%|          | 5/647 [00:30<1:04:56,  6.07s/it]1|5|Loss: 11.761783599853516:   1%|          | 6/647 [00:36<1:04:58,  6.08s/it]1|6|Loss: 11.761784553527832:   1%|          | 6/647 [00:36<1:04:58,  6.08s/it]1|6|Loss: 11.761784553527832:   1%|          | 7/647 [00:42<1:04:40,  6.06s/it]1|7|Loss: 11.761783599853516:   1%|          | 7/647 [00:42<1:04:40,  6.06s/it]1|7|Loss: 11.761783599853516:   1%|          | 8/647 [00:48<1:04:17,  6.04s/it]1|8|Loss: 11.761783599853516:   1%|          | 8/647 [00:48<1:04:17,  6.04s/it]1|8|Loss: 11.761783599853516:   1%|▏         | 9/647 [00:53<1:01:49,  5.81s/it]1|9|Loss: 11.761783599853516:   1%|▏         | 9/647 [00:53<1:01:49,  5.81s/it]1|9|Loss: 11.761783599853516:   2%|▏         | 10/647 [00:59<1:00:47,  5.73s/it]1|10|Loss: 11.761784553527832:   2%|▏         | 10/647 [00:59<1:00:47,  5.73s/it]1|10|Loss: 11.761784553527832:   2%|▏         | 11/647 [01:05<1:01:30,  5.80s/it]1|11|Loss: 11.761783599853516:   2%|▏         | 11/647 [01:05<1:01:30,  5.80s/it]1|11|Loss: 11.761783599853516:   2%|▏         | 12/647 [01:11<1:01:02,  5.77s/it]1|12|Loss: 11.761783599853516:   2%|▏         | 12/647 [01:11<1:01:02,  5.77s/it]1|12|Loss: 11.761783599853516:   2%|▏         | 13/647 [01:16<1:00:31,  5.73s/it]1|13|Loss: 11.761783599853516:   2%|▏         | 13/647 [01:16<1:00:31,  5.73s/it]1|13|Loss: 11.761783599853516:   2%|▏         | 14/647 [01:22<1:00:15,  5.71s/it]1|14|Loss: 11.761783599853516:   2%|▏         | 14/647 [01:22<1:00:15,  5.71s/it]1|14|Loss: 11.761783599853516:   2%|▏         | 15/647 [01:28<1:00:57,  5.79s/it]1|15|Loss: 11.761784553527832:   2%|▏         | 15/647 [01:28<1:00:57,  5.79s/it]1|15|Loss: 11.761784553527832:   2%|▏         | 16/647 [01:34<1:00:27,  5.75s/it]1|16|Loss: 11.7617826461792:   2%|▏         | 16/647 [01:34<1:00:27,  5.75s/it]  1|16|Loss: 11.7617826461792:   3%|▎         | 17/647 [01:40<1:01:54,  5.90s/it]1|17|Loss: 11.761783599853516:   3%|▎         | 17/647 [01:40<1:01:54,  5.90s/it]1|17|Loss: 11.761783599853516:   3%|▎         | 18/647 [01:46<1:03:00,  6.01s/it]1|18|Loss: 11.761783599853516:   3%|▎         | 18/647 [01:46<1:03:00,  6.01s/it]1|18|Loss: 11.761783599853516:   3%|▎         | 19/647 [01:52<1:02:25,  5.96s/it]1|19|Loss: 11.761784553527832:   3%|▎         | 19/647 [01:52<1:02:25,  5.96s/it]1|19|Loss: 11.761784553527832:   3%|▎         | 20/647 [01:58<1:02:26,  5.98s/it]1|20|Loss: 11.761783599853516:   3%|▎         | 20/647 [01:58<1:02:26,  5.98s/it]1|20|Loss: 11.761783599853516:   3%|▎         | 21/647 [02:03<1:01:06,  5.86s/it]1|21|Loss: 11.761783599853516:   3%|▎         | 21/647 [02:03<1:01:06,  5.86s/it]1|21|Loss: 11.761783599853516:   3%|▎         | 22/647 [02:10<1:02:28,  6.00s/it]1|22|Loss: 11.761783599853516:   3%|▎         | 22/647 [02:10<1:02:28,  6.00s/it]1|22|Loss: 11.761783599853516:   4%|▎         | 23/647 [02:15<1:01:22,  5.90s/it]1|23|Loss: 11.761783599853516:   4%|▎         | 23/647 [02:15<1:01:22,  5.90s/it]1|23|Loss: 11.761783599853516:   4%|▎         | 24/647 [02:21<59:43,  5.75s/it]  1|24|Loss: 11.761783599853516:   4%|▎         | 24/647 [02:21<59:43,  5.75s/it]1|24|Loss: 11.761783599853516:   4%|▍         | 25/647 [02:27<59:39,  5.76s/it]1|25|Loss: 11.761783599853516:   4%|▍         | 25/647 [02:27<59:39,  5.76s/it]1|25|Loss: 11.761783599853516:   4%|▍         | 26/647 [02:32<59:23,  5.74s/it]1|26|Loss: 11.761783599853516:   4%|▍         | 26/647 [02:32<59:23,  5.74s/it]1|26|Loss: 11.761783599853516:   4%|▍         | 27/647 [02:38<58:59,  5.71s/it]1|27|Loss: 11.7617826461792:   4%|▍         | 27/647 [02:38<58:59,  5.71s/it]  1|27|Loss: 11.7617826461792:   4%|▍         | 28/647 [02:44<59:14,  5.74s/it]1|28|Loss: 11.761783599853516:   4%|▍         | 28/647 [02:44<59:14,  5.74s/it]1|28|Loss: 11.761783599853516:   4%|▍         | 29/647 [02:50<59:46,  5.80s/it]1|29|Loss: 11.761783599853516:   4%|▍         | 29/647 [02:50<59:46,  5.80s/it]1|29|Loss: 11.761783599853516:   5%|▍         | 30/647 [02:55<57:33,  5.60s/it]1|30|Loss: 11.761784553527832:   5%|▍         | 30/647 [02:55<57:33,  5.60s/it]1|30|Loss: 11.761784553527832:   5%|▍         | 30/647 [02:55<1:00:07,  5.85s/it]

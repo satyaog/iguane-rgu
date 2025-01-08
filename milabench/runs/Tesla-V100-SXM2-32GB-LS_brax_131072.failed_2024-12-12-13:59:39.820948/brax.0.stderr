@@ -1,0 +1,31 @@
+2024-12-12 13:58:37.439533: W external/xla/xla/service/gpu/nvptx_compiler.cc:893] The NVIDIA driver's CUDA version is 12.2 which is older than the PTX compiler version 12.6.77. Because the driver is older than the PTX compiler version, XLA is disabling parallel compilation, which may slow down compilation. You should update your NVIDIA driver or use the NVIDIA-provided CUDA forward compatibility packages.
+2024-12-12 13:58:46.336941: E external/xla/xla/service/hlo_lexer.cc:438] Failed to parse int literal: 894515288310727292233
+2024-12-12 13:59:37.736542: W external/xla/xla/tsl/framework/bfc_allocator.cc:497] Allocator (GPU_0_bfc) ran out of memory trying to allocate 22.58GiB (rounded to 24243380480)requested by op 
+2024-12-12 13:59:37.736966: W external/xla/xla/tsl/framework/bfc_allocator.cc:508] ________________________________________________________________________________________**____******
+E1212 13:59:37.737044  862024 pjrt_stream_executor_client.cc:3067] Execution of replica 0 failed: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 24243380312 bytes.
+jax.errors.SimplifiedTraceback: For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/voir", line 8, in <module>
+    sys.exit(main())
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/cli.py", line 128, in main
+    ov(sys.argv[1:] if argv is None else argv)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/phase.py", line 331, in __call__
+    self._run(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/overseer.py", line 242, in _run
+    set_value(func())
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/scriptutils.py", line 37, in <lambda>
+    return lambda: exec(mainsection, glb, glb)
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/brax/main.py", line 123, in <module>
+    main()
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/brax/main.py", line 112, in main
+    run()
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/brax/main.py", line 91, in run
+    train(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/brax/training/agents/ppo/train.py", line 452, in train
+    training_epoch_with_timing(training_state, env_state, epoch_keys)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/brax/training/agents/ppo/train.py", line 354, in training_epoch_with_timing
+    result = training_epoch(training_state, env_state, key)
+jaxlib.xla_extension.XlaRuntimeError: RESOURCE_EXHAUSTED: Out of memory while trying to allocate 24243380312 bytes.

@@ -1,0 +1,43 @@
+/home/mila/o/ortizgas/CODE/milabench/benchmarks/huggingface/bench/__main__.py:79: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.amp_scaler = accelerator.amp.GradScaler(enabled=is_fp16_allowed(args))
+/home/mila/o/ortizgas/CODE/milabench/benchmarks/huggingface/bench/__main__.py:82: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  self.amp_context = lambda: accelerator.amp.autocast(dtype=float_dtype(args.precision))
+We strongly recommend passing in an `attention_mask` since your input_ids may be padded. See https://huggingface.co/docs/transformers/troubleshooting#incorrect-output-when-padding-tokens-arent-masked.
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/voir", line 8, in <module>
+    sys.exit(main())
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/cli.py", line 128, in main
+    ov(sys.argv[1:] if argv is None else argv)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/phase.py", line 331, in __call__
+    self._run(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/overseer.py", line 242, in _run
+    set_value(func())
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/scriptutils.py", line 37, in <lambda>
+    return lambda: exec(mainsection, glb, glb)
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/huggingface/bench/__main__.py", line 208, in <module>
+    main()
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/huggingface/bench/__main__.py", line 204, in main
+    runner.train()
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/huggingface/bench/__main__.py", line 120, in train
+    loss = self.step(data)
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/huggingface/bench/__main__.py", line 92, in step
+    self.amp_scaler.scale(loss).backward()
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/_tensor.py", line 521, in backward
+    torch.autograd.backward(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/autograd/__init__.py", line 289, in backward
+    _engine_run_backward(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/autograd/graph.py", line 768, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/autograd/function.py", line 306, in apply
+    return user_fn(self, *args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/transformers/models/reformer/modeling_reformer.py", line 1671, in backward
+    output = layer.backward_pass(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/transformers/models/reformer/modeling_reformer.py", line 1558, in backward_pass
+    output.backward(grad_attn_output, retain_graph=True)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/_tensor.py", line 521, in backward
+    torch.autograd.backward(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/autograd/__init__.py", line 289, in backward
+    _engine_run_backward(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/autograd/graph.py", line 768, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.11 GiB. GPU 0 has a total capacity of 31.74 GiB of which 1.51 GiB is free. Including non-PyTorch memory, this process has 30.23 GiB memory in use. Of the allocated memory 26.43 GiB is allocated by PyTorch, and 3.43 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

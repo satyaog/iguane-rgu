@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/voir", line 8, in <module>
+    sys.exit(main())
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/cli.py", line 128, in main
+    ov(sys.argv[1:] if argv is None else argv)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/phase.py", line 331, in __call__
+    self._run(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/overseer.py", line 242, in _run
+    set_value(func())
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/scriptutils.py", line 37, in <lambda>
+    return lambda: exec(mainsection, glb, glb)
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/recursiongfn/main.py", line 163, in <module>
+    main(
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/recursiongfn/main.py", line 144, in main
+    trial.run()
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/recursiongfn/gflownet/src/gflownet/trainer.py", line 284, in run
+    for it, batch in zip(range(start, 1 + num_training_steps), cycle(train_dl)):
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/recursiongfn/gflownet/src/gflownet/trainer.py", line 398, in cycle
+    for i in it:
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmate/benchmate/metrics.py", line 293, in wrapped
+    for data in iterator:
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1344, in _next_data
+    return self._process_data(data)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1370, in _process_data
+    data.reraise()
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/_utils.py", line 706, in reraise
+    raise exception
+RuntimeError: Caught RuntimeError in DataLoader worker process 1.
+Original Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 309, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 42, in fetch
+    data = next(self.dataset_iter)
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/recursiongfn/gflownet/src/gflownet/data/data_source.py", line 84, in __iter__
+    yield self.create_batch(trajs, batch_info)
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/recursiongfn/gflownet/src/gflownet/data/data_source.py", line 242, in create_batch
+    return self._maybe_put_in_mp_buffer(batch)
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/recursiongfn/gflownet/src/gflownet/data/data_source.py", line 351, in _maybe_put_in_mp_buffer
+    return (BufferPickler(self.result_buffer[self._wid]).dumps(batch), self._wid)
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/recursiongfn/gflownet/src/gflownet/utils/multiprocessing_proxy.py", line 82, in dumps
+    self.dump(obj)
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/recursiongfn/gflownet/src/gflownet/utils/multiprocessing_proxy.py", line 57, in persistent_id
+    raise RuntimeError(
+RuntimeError: Tried to allocate 33585888 bytes in a buffer of size 33554432. Consider increasing cfg.mp_buffer_size
+

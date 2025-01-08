@@ -1,0 +1,165 @@
+{"event": "config", "data": {"system": {"arch": "cuda", "sshkey": null, "nodes": [{"name": "local", "ip": "127.0.0.1", "sshport": 22, "user": "root", "main": true, "hostname": "cn-e002.server.mila.quebec", "local": true}], "self": {"name": "local", "ip": "127.0.0.1", "sshport": 22, "user": "root", "main": true, "hostname": "cn-e002.server.mila.quebec", "local": true}}, "dirs": {"base": "/network/scratch/o/ortizgas/data/milabench", "venv": "/network/scratch/o/ortizgas/data/milabench/venv/torch", "data": "/network/scratch/o/ortizgas/data/milabench/data", "runs": "/network/scratch/o/ortizgas/data/milabench/runs", "extra": "/network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus", "cache": "/network/scratch/o/ortizgas/data/milabench/cache"}, "group": "llm-lora-mp-gpus", "install_group": "torch", "install_variant": "cuda", "run_name": "Tesla-V100-SXM2-32GB-LS_llm-lora-mp-gpus_1.staging", "enabled": true, "capabilities": {"nodes": 1}, "max_duration": 1200, "voir": {"options": {"stop": 30, "interval": "1s"}}, "validation": {"usage": {"gpu_load_threshold": 0.5, "gpu_mem_threshold": 0.5}}, "config_base": "/home/mila/o/ortizgas/CODE/milabench/config", "config_file": "/home/mila/o/ortizgas/CODE/milabench/config/standard.yaml", "tags": ["llm", "multigpu", "nlp"], "num_machines": 1, "definition": "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm", "plan": {"method": "njobs", "n": 1}, "argv": {"{milabench_code}/recipes/lora_finetune_distributed.py": true, "--config": "{milabench_code}/configs/llama3_70B_lora.yaml", "epochs=1": true, "output_dir={milabench_extra}/output": true, "tokenizer.path={milabench_data}/llama3_70B/original/tokenizer.model": true, "checkpointer.checkpoint_dir={milabench_data}/llama3_70B": true, "checkpointer.output_dir={milabench_data}/llama3_70B/": true, "safetensors=true": true, "metric_logger.log_dir={milabench_extra}/metrics": true, "repo_id=\"meta-llama/Meta-Llama-3.1-70B\"": true, "batch_size=8": true, "gradient_accumulation_steps=1": true}, "weight": 1.0, "name": "llm-lora-mp-gpus", "tag": ["llm-lora-mp-gpus", "0"], "job-number": 0, "devices": [0, 1, 2, 3]}, "pipe": null}
+{"event": "meta", "data": {"cpu": {"count": 40, "brand": "Intel(R) Xeon(R) CPU E5-2698 v4 @ 2.20GHz"}, "os": {"sysname": "Linux", "nodename": "cn-e002.server.mila.quebec", "release": "5.15.0-1048-nvidia", "version": "#48-Ubuntu SMP Thu Mar 21 18:19:02 UTC 2024", "machine": "x86_64"}, "accelerators": {"arch": "cuda", "gpus": {"0": {"minor_number": "0", "device": 0, "product": "Tesla V100-SXM2-32GB-LS", "memory": {"used": 267.0, "total": 32768.0}, "utilization": {"compute": 0.0, "memory": 0}, "temperature": 35.0, "power": 71.35, "selection_variable": "CUDA_VISIBLE_DEVICES"}, "1": {"minor_number": "1", "device": 1, "product": "Tesla V100-SXM2-32GB-LS", "memory": {"used": 267.0, "total": 32768.0}, "utilization": {"compute": 0.0, "memory": 0}, "temperature": 36.0, "power": 71.831, "selection_variable": "CUDA_VISIBLE_DEVICES"}, "2": {"minor_number": "5", "device": 2, "product": "Tesla V100-SXM2-32GB-LS", "memory": {"used": 267.0, "total": 32768.0}, "utilization": {"compute": 0.0, "memory": 0}, "temperature": 38.0, "power": 69.378, "selection_variable": "CUDA_VISIBLE_DEVICES"}, "3": {"minor_number": "6", "device": 3, "product": "Tesla V100-SXM2-32GB-LS", "memory": {"used": 267.0, "total": 32768.0}, "utilization": {"compute": 0.0, "memory": 0}, "temperature": 36.0, "power": 43.975, "selection_variable": "CUDA_VISIBLE_DEVICES"}}}, "date": 1734082144.61863, "milabench": {"tag": "v1.0.0_RC1-13-g7a90b16", "commit": "7a90b1691650232ecd63abded0b7be84bb294c05", "date": "2024-11-08 11:28:56 -0500"}, "pytorch": {"torch": "2.4.0+cu121", "compiler": "GCC 9.3", "cpp": "C++ Version: 201703", "intel": "Intel(R) oneAPI Math Kernel Library Version 2022.2-Product Build 20220804 for Intel(R) 64 architecture applications", "mkl": "OpenMP 201511 (a.k.a. OpenMP 4.5)", "openmp": "OpenMP 201511 (a.k.a. OpenMP 4.5)", "lapack": "LAPACK is enabled (usually provided by MKL)", "nnpack": "NNPACK is enabled", "cpu": "CPU capability usage: AVX2", "build_settings": {"BLAS_INFO": "mkl", "BUILD_TYPE": "Release", "CUDA_VERSION": "12.1", "CUDNN_VERSION": "9.1.0", "CXX_COMPILER": "/opt/rh/devtoolset-9/root/usr/bin/c++", "CXX_FLAGS": "-D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow", "LAPACK_INFO": "mkl", "PERF_WITH_AVX": "1", "PERF_WITH_AVX2": "1", "PERF_WITH_AVX512": "1", "TORCH_VERSION": "2.4.0", "USE_CUDA": "ON", "USE_CUDNN": "ON", "USE_CUSPARSELT": "1", "USE_EXCEPTION_PTR": "1", "USE_GFLAGS": "OFF", "USE_GLOG": "OFF", "USE_GLOO": "ON", "USE_MKL": "ON", "USE_MKLDNN": "ON", "USE_MPI": "OFF", "USE_NCCL": "1", "USE_NNPACK": "ON", "USE_OPENMP": "ON", "USE_ROCM": "OFF", "USE_ROCM_KERNEL_ASSERT": "OFF"}}}, "pipe": null}
+{"event": "start", "data": {"command": ["/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/tune", "run", "--nnodes=1", "--rdzv-backend=static", "--rdzv-endpoint=cn-e002.server.mila.quebec:29400", "--master-addr=cn-e002.server.mila.quebec", "--master-port=29400", "--local-ranks-filter=0", "--nproc-per-node=4", "--", "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py", "--config", "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/configs/llama3_70B_lora.yaml", "epochs=1", "output_dir=/network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/output", "tokenizer.path=/network/scratch/o/ortizgas/data/milabench/data/llama3_70B/original/tokenizer.model", "checkpointer.checkpoint_dir=/network/scratch/o/ortizgas/data/milabench/data/llama3_70B", "checkpointer.output_dir=/network/scratch/o/ortizgas/data/milabench/data/llama3_70B/", "safetensors=true", "metric_logger.log_dir=/network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/metrics", "repo_id=\"meta-llama/Meta-Llama-3.1-70B\"", "batch_size=1", "gradient_accumulation_steps=1"], "time": 1734064144.7017858}, "pipe": null}
+{"event": "line", "data": "Running with torchrun...\n", "pipe": "stdout"}
+{"event": "line", "data": "INFO:torchtune.utils.logging:Running LoRAFinetuneRecipeDistributed with resolved config:\n", "pipe": "stderr"}
+{"event": "line", "data": "\n", "pipe": "stderr"}
+{"event": "line", "data": "batch_size: 1\n", "pipe": "stderr"}
+{"event": "line", "data": "checkpointer:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torchtune.utils.FullModelHFCheckpointer\n", "pipe": "stderr"}
+{"event": "line", "data": "  checkpoint_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B\n", "pipe": "stderr"}
+{"event": "line", "data": "  checkpoint_files:\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00001-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00002-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00003-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00004-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00005-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00006-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00007-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00008-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00009-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00010-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00011-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00012-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00013-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00014-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00015-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00016-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00017-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00018-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00019-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00020-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00021-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00022-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00023-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00024-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00025-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00026-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00027-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00028-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00029-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00030-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  model_type: LLAMA3\n", "pipe": "stderr"}
+{"event": "line", "data": "  output_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B/\n", "pipe": "stderr"}
+{"event": "line", "data": "  recipe_checkpoint: null\n", "pipe": "stderr"}
+{"event": "line", "data": "dataset:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torchtune.datasets.alpaca_dataset\n", "pipe": "stderr"}
+{"event": "line", "data": "device: cuda\n", "pipe": "stderr"}
+{"event": "line", "data": "dtype: bf16\n", "pipe": "stderr"}
+{"event": "line", "data": "enable_activation_checkpointing: true\n", "pipe": "stderr"}
+{"event": "line", "data": "epochs: 1\n", "pipe": "stderr"}
+{"event": "line", "data": "gradient_accumulation_steps: 1\n", "pipe": "stderr"}
+{"event": "line", "data": "log_every_n_steps: 1\n", "pipe": "stderr"}
+{"event": "line", "data": "log_peak_memory_stats: false\n", "pipe": "stderr"}
+{"event": "line", "data": "loss:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torch.nn.CrossEntropyLoss\n", "pipe": "stderr"}
+{"event": "line", "data": "lr_scheduler:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torchtune.modules.get_cosine_schedule_with_warmup\n", "pipe": "stderr"}
+{"event": "line", "data": "  num_warmup_steps: 100\n", "pipe": "stderr"}
+{"event": "line", "data": "max_steps_per_epoch: null\n", "pipe": "stderr"}
+{"event": "line", "data": "metric_logger:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torchtune.utils.metric_logging.DiskLogger\n", "pipe": "stderr"}
+{"event": "line", "data": "  log_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/metrics\n", "pipe": "stderr"}
+{"event": "line", "data": "model:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torchtune.models.llama3_1.lora_llama3_1_70b\n", "pipe": "stderr"}
+{"event": "line", "data": "  apply_lora_to_mlp: false\n", "pipe": "stderr"}
+{"event": "line", "data": "  apply_lora_to_output: false\n", "pipe": "stderr"}
+{"event": "line", "data": "  lora_alpha: 32\n", "pipe": "stderr"}
+{"event": "line", "data": "  lora_attn_modules:\n", "pipe": "stderr"}
+{"event": "line", "data": "  - q_proj\n", "pipe": "stderr"}
+{"event": "line", "data": "  - k_proj\n", "pipe": "stderr"}
+{"event": "line", "data": "  - v_proj\n", "pipe": "stderr"}
+{"event": "line", "data": "  lora_rank: 16\n", "pipe": "stderr"}
+{"event": "line", "data": "optimizer:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torch.optim.AdamW\n", "pipe": "stderr"}
+{"event": "line", "data": "  lr: 0.0003\n", "pipe": "stderr"}
+{"event": "line", "data": "  weight_decay: 0.01\n", "pipe": "stderr"}
+{"event": "line", "data": "output_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/output\n", "pipe": "stderr"}
+{"event": "line", "data": "repo_id: meta-llama/Meta-Llama-3.1-70B\n", "pipe": "stderr"}
+{"event": "line", "data": "resume_from_checkpoint: false\n", "pipe": "stderr"}
+{"event": "line", "data": "safetensors: true\n", "pipe": "stderr"}
+{"event": "line", "data": "save_adapter_weights_only: false\n", "pipe": "stderr"}
+{"event": "line", "data": "seed: null\n", "pipe": "stderr"}
+{"event": "line", "data": "shuffle: true\n", "pipe": "stderr"}
+{"event": "line", "data": "tokenizer:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torchtune.models.llama3.llama3_tokenizer\n", "pipe": "stderr"}
+{"event": "line", "data": "  path: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B/original/tokenizer.model\n", "pipe": "stderr"}
+{"event": "line", "data": "\n", "pipe": "stderr"}
+{"event": "line", "data": "DEBUG:torchtune.utils.logging:Setting manual seed to local seed 1725049255. Local seed is seed + rank = 1725049255 + 0\n", "pipe": "stderr"}
+{"event": "line", "data": "Writing logs to /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/metrics/log_1734064167.txt\n", "pipe": "stdout"}
+{"event": "line", "data": "INFO:torchtune.utils.logging:FSDP is enabled. Instantiating Model on CPU for Rank 0 ...\n", "pipe": "stderr"}
+{"event": "line", "data": "INFO:torchtune.utils.logging:Model instantiation took 62.83 secs\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]: Traceback (most recent call last):\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py\", line 795, in <module>\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     sys.exit(recipe_main())\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/config/_parse.py\", line 50, in wrapper\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     sys.exit(recipe_main(conf))\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py\", line 781, in recipe_main\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     recipe.setup(cfg=cfg)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py\", line 222, in setup\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     self._model = self._setup_model(\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py\", line 417, in _setup_model\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     model = FSDP(\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py\", line 483, in __init__\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     _auto_wrap(\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/_wrap_utils.py\", line 102, in _auto_wrap\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     _recursive_wrap(**recursive_wrap_kwargs, **root_kwargs)  # type: ignore[arg-type]\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/wrap.py\", line 544, in _recursive_wrap\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     wrapped_child, num_wrapped_params = _recursive_wrap(\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/wrap.py\", line 544, in _recursive_wrap\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     wrapped_child, num_wrapped_params = _recursive_wrap(\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/wrap.py\", line 562, in _recursive_wrap\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return _wrap(module, wrapper_cls, **kwargs), nonwrapped_numel\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/wrap.py\", line 491, in _wrap\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return wrapper_cls(module, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py\", line 509, in __init__\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     _init_param_handle_from_module(\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/_init_utils.py\", line 603, in _init_param_handle_from_module\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     _init_param_handle_from_params(state, managed_params, fully_sharded_module)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/_init_utils.py\", line 628, in _init_param_handle_from_params\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     handle.shard()\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     return func(*args, **kwargs)\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/_flat_param.py\", line 912, in shard\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     sharded_flat_param, numel_padded = FlatParamHandle._get_shard(\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:   File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/fsdp/_flat_param.py\", line 1076, in _get_shard\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]:     shard = chunk.clone()\n", "pipe": "stderr"}
+{"event": "line", "data": "[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 410.00 MiB. GPU 0 has a total capacity of 31.74 GiB of which 377.38 MiB is free. Including non-PyTorch memory, this process has 31.37 GiB memory in use. Of the allocated memory 30.77 GiB is allocated by PyTorch, and 180.43 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n", "pipe": "stderr"}
+{"event": "line", "data": "W1212 23:32:56.467740 140559105594496 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 1636565 closing signal SIGTERM\n", "pipe": "stderr"}
+{"event": "line", "data": "W1212 23:32:56.469569 140559105594496 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 1636566 closing signal SIGTERM\n", "pipe": "stderr"}
+{"event": "line", "data": "W1212 23:32:56.470074 140559105594496 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 1636567 closing signal SIGTERM\n", "pipe": "stderr"}
+{"event": "line", "data": "E1212 23:32:57.236857 140559105594496 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 1) local_rank: 3 (pid: 1636568) of binary: /network/scratch/o/ortizgas/data/milabench/venv/torch/bin/python\n", "pipe": "stderr"}
+{"event": "line", "data": "Traceback (most recent call last):\n", "pipe": "stderr"}
+{"event": "line", "data": "  File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/tune\", line 8, in <module>\n", "pipe": "stderr"}
+{"event": "line", "data": "    sys.exit(main())\n", "pipe": "stderr"}
+{"event": "line", "data": "  File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/tune.py\", line 49, in main\n", "pipe": "stderr"}
+{"event": "line", "data": "    parser.run(args)\n", "pipe": "stderr"}
+{"event": "line", "data": "  File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/tune.py\", line 43, in run\n", "pipe": "stderr"}
+{"event": "line", "data": "    args.func(args)\n", "pipe": "stderr"}
+{"event": "line", "data": "  File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/run.py\", line 177, in _run_cmd\n", "pipe": "stderr"}
+{"event": "line", "data": "    self._run_distributed(args)\n", "pipe": "stderr"}
+{"event": "line", "data": "  File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/run.py\", line 88, in _run_distributed\n", "pipe": "stderr"}
+{"event": "line", "data": "    run(args)\n", "pipe": "stderr"}
+{"event": "line", "data": "  File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/run.py\", line 892, in run\n", "pipe": "stderr"}
+{"event": "line", "data": "    elastic_launch(\n", "pipe": "stderr"}
+{"event": "line", "data": "  File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py\", line 133, in __call__\n", "pipe": "stderr"}
+{"event": "line", "data": "    return launch_agent(self._config, self._entrypoint, list(args))\n", "pipe": "stderr"}
+{"event": "line", "data": "  File \"/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py\", line 264, in launch_agent\n", "pipe": "stderr"}
+{"event": "line", "data": "    raise ChildFailedError(\n", "pipe": "stderr"}
+{"event": "line", "data": "torch.distributed.elastic.multiprocessing.errors.ChildFailedError: \n", "pipe": "stderr"}
+{"event": "line", "data": "============================================================\n", "pipe": "stderr"}
+{"event": "line", "data": "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py FAILED\n", "pipe": "stderr"}
+{"event": "line", "data": "------------------------------------------------------------\n", "pipe": "stderr"}
+{"event": "line", "data": "Failures:\n", "pipe": "stderr"}
+{"event": "line", "data": "  <NO_OTHER_FAILURES>\n", "pipe": "stderr"}
+{"event": "line", "data": "------------------------------------------------------------\n", "pipe": "stderr"}
+{"event": "line", "data": "Root Cause (first observed failure):\n", "pipe": "stderr"}
+{"event": "line", "data": "[0]:\n", "pipe": "stderr"}
+{"event": "line", "data": "  time      : 2024-12-12_23:32:56\n", "pipe": "stderr"}
+{"event": "line", "data": "  host      : cn-e002.server.mila.quebec\n", "pipe": "stderr"}
+{"event": "line", "data": "  rank      : 3 (local_rank: 3)\n", "pipe": "stderr"}
+{"event": "line", "data": "  exitcode  : 1 (pid: 1636568)\n", "pipe": "stderr"}
+{"event": "line", "data": "  error_file: <N/A>\n", "pipe": "stderr"}
+{"event": "line", "data": "  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html\n", "pipe": "stderr"}
+{"event": "line", "data": "============================================================\n", "pipe": "stderr"}
+{"event": "end", "data": {"command": ["/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/tune", "run", "--nnodes=1", "--rdzv-backend=static", "--rdzv-endpoint=cn-e002.server.mila.quebec:29400", "--master-addr=cn-e002.server.mila.quebec", "--master-port=29400", "--local-ranks-filter=0", "--nproc-per-node=4", "--", "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py", "--config", "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/configs/llama3_70B_lora.yaml", "epochs=1", "output_dir=/network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/output", "tokenizer.path=/network/scratch/o/ortizgas/data/milabench/data/llama3_70B/original/tokenizer.model", "checkpointer.checkpoint_dir=/network/scratch/o/ortizgas/data/milabench/data/llama3_70B", "checkpointer.output_dir=/network/scratch/o/ortizgas/data/milabench/data/llama3_70B/", "safetensors=true", "metric_logger.log_dir=/network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/metrics", "repo_id=\"meta-llama/Meta-Llama-3.1-70B\"", "batch_size=1", "gradient_accumulation_steps=1"], "time": 1734064387.4845827, "return_code": 1}, "pipe": null}

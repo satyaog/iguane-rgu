@@ -1,0 +1,121 @@
+INFO:torchtune.utils.logging:Set intra op parallelism no. of threads to 64
+INFO:torchtune.utils.logging:Running FullFinetuneRecipeDistributed with resolved config:
+
+batch_size: 4
+checkpointer:
+  _component_: torchtune.utils.FullModelHFCheckpointer
+  checkpoint_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B
+  checkpoint_files:
+  - model-00001-of-00030.safetensors
+  - model-00002-of-00030.safetensors
+  - model-00003-of-00030.safetensors
+  - model-00004-of-00030.safetensors
+  - model-00005-of-00030.safetensors
+  - model-00006-of-00030.safetensors
+  - model-00007-of-00030.safetensors
+  - model-00008-of-00030.safetensors
+  - model-00009-of-00030.safetensors
+  - model-00010-of-00030.safetensors
+  - model-00011-of-00030.safetensors
+  - model-00012-of-00030.safetensors
+  - model-00013-of-00030.safetensors
+  - model-00014-of-00030.safetensors
+  - model-00015-of-00030.safetensors
+  - model-00016-of-00030.safetensors
+  - model-00017-of-00030.safetensors
+  - model-00018-of-00030.safetensors
+  - model-00019-of-00030.safetensors
+  - model-00020-of-00030.safetensors
+  - model-00021-of-00030.safetensors
+  - model-00022-of-00030.safetensors
+  - model-00023-of-00030.safetensors
+  - model-00024-of-00030.safetensors
+  - model-00025-of-00030.safetensors
+  - model-00026-of-00030.safetensors
+  - model-00027-of-00030.safetensors
+  - model-00028-of-00030.safetensors
+  - model-00029-of-00030.safetensors
+  - model-00030-of-00030.safetensors
+  model_type: LLAMA3
+  output_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B/
+  recipe_checkpoint: null
+dataset:
+  _component_: torchtune.datasets.alpaca_dataset
+device: cuda
+dtype: bf16
+enable_activation_checkpointing: true
+epochs: 1
+fsdp_cpu_offload: true
+gradient_accumulation_steps: 1
+log_every_n_steps: 1
+log_peak_memory_stats: false
+loss:
+  _component_: torch.nn.CrossEntropyLoss
+max_steps_per_epoch: null
+memory_efficient_fsdp_wrap: true
+metric_logger:
+  _component_: torchtune.utils.metric_logging.DiskLogger
+  log_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-full-mp-gpus/metrics
+model:
+  _component_: torchtune.models.llama3_1.llama3_1_70b
+optimizer:
+  _component_: torch.optim.AdamW
+  foreach: false
+  fused: true
+  lr: 2.0e-05
+output_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-full-mp-gpus/output
+repo_id: meta-llama/Meta-Llama-3.1-70B
+resume_from_checkpoint: false
+safetensors: true
+seed: null
+shuffle: true
+tokenizer:
+  _component_: torchtune.models.llama3.llama3_tokenizer
+  path: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B/original/tokenizer.model
+
+DEBUG:torchtune.utils.logging:Setting manual seed to local seed 2072719246. Local seed is seed + rank = 2072719246 + 0
+INFO:torchtune.utils.logging:FSDP is enabled. Instantiating Model on CPU for Rank 0 ...
+INFO:torchtune.utils.logging:Model instantiation took 51.06 secs
+INFO:torchtune.utils.logging:Memory stats after model init:
+	GPU peak memory allocation: 4.73 GB
+	GPU peak memory reserved: 6.44 GB
+	GPU peak memory active: 4.73 GB
+INFO:torchtune.utils.logging:Optimizer is initialized.
+INFO:torchtune.utils.logging:Dataset and Sampler are initialized.
+  0%|          | 0/3251 [00:00<?, ?it/s]W1211 14:15:12.532151 139879975343232 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2761671 closing signal SIGTERM
+W1211 14:15:12.567257 139879975343232 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2761672 closing signal SIGTERM
+W1211 14:15:12.568519 139879975343232 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 2761674 closing signal SIGTERM
+E1211 14:15:33.513935 139879975343232 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: -9) local_rank: 2 (pid: 2761673) of binary: /network/scratch/o/ortizgas/data/milabench/venv/torch/bin/python
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/tune", line 8, in <module>
+    sys.exit(main())
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/tune.py", line 49, in main
+    parser.run(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/tune.py", line 43, in run
+    args.func(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/run.py", line 177, in _run_cmd
+    self._run_distributed(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/run.py", line 88, in _run_distributed
+    run(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/full_finetune_distributed.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-12-11_14:15:12
+  host      : cn-d001.server.mila.quebec
+  rank      : 2 (local_rank: 2)
+  exitcode  : -9 (pid: 2761673)
+  error_file: <N/A>
+  traceback : Signal 9 (SIGKILL) received by PID 2761673
+============================================================

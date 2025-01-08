@@ -1,0 +1,142 @@
+Using 16bit Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/4
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 4 processes
+----------------------------------------------------------------------------------------------------
+
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1,2,3]
+
+  | Name  | Type   | Params | Mode 
+-----------------------------------------
+0 | model | ResNet | 60.2 M | train
+-----------------------------------------
+60.2 M    Trainable params
+0         Non-trainable params
+60.2 M    Total params
+240.771   Total estimated model params size (MB)
+423       Modules in train mode
+0         Modules in eval mode
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/voir", line 8, in <module>
+[rank0]:     sys.exit(main())
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/cli.py", line 128, in main
+[rank0]:     ov(sys.argv[1:] if argv is None else argv)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/phase.py", line 331, in __call__
+[rank0]:     self._run(*args, **kwargs)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/overseer.py", line 242, in _run
+[rank0]:     set_value(func())
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/voir/scriptutils.py", line 37, in <lambda>
+[rank0]:     return lambda: exec(mainsection, glb, glb)
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/lightning/main.py", line 101, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmarks/lightning/main.py", line 96, in main
+[rank0]:     trainer.fit(model=model, train_dataloaders=loader)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 538, in fit
+[rank0]:     call._call_and_handle_interrupt(
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py", line 46, in _call_and_handle_interrupt
+[rank0]:     return trainer.strategy.launcher.launch(trainer_fn, *args, trainer=trainer, **kwargs)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/strategies/launchers/subprocess_script.py", line 105, in launch
+[rank0]:     return function(*args, **kwargs)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 574, in _fit_impl
+[rank0]:     self._run(model, ckpt_path=ckpt_path)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 981, in _run
+[rank0]:     results = self._run_stage()
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/trainer/trainer.py", line 1025, in _run_stage
+[rank0]:     self.fit_loop.run()
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py", line 205, in run
+[rank0]:     self.advance()
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/fit_loop.py", line 363, in advance
+[rank0]:     self.epoch_loop.run(self._data_fetcher)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 140, in run
+[rank0]:     self.advance(data_fetcher)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/training_epoch_loop.py", line 212, in advance
+[rank0]:     batch, _, __ = next(data_fetcher)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/fetchers.py", line 133, in __next__
+[rank0]:     batch = super().__next__()
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/loops/fetchers.py", line 60, in __next__
+[rank0]:     batch = next(self.iterator)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/utilities/combined_loader.py", line 341, in __next__
+[rank0]:     out = next(self._iterator)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/lightning/pytorch/utilities/combined_loader.py", line 78, in __next__
+[rank0]:     out[i] = next(self.iterators[i])
+[rank0]:   File "/home/mila/o/ortizgas/CODE/milabench/benchmate/benchmate/metrics.py", line 293, in wrapped
+[rank0]:     for data in iterator:
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 630, in __next__
+[rank0]:     data = self._next_data()
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1324, in _next_data
+[rank0]:     return self._process_data(data)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1370, in _process_data
+[rank0]:     data.reraise()
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/_utils.py", line 706, in reraise
+[rank0]:     raise exception
+[rank0]: FileNotFoundError: Caught FileNotFoundError in DataLoader worker process 4.
+[rank0]: Original Traceback (most recent call last):
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 309, in _worker_loop
+[rank0]:     data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 52, in fetch
+[rank0]:     data = [self.dataset[idx] for idx in possibly_batched_index]
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 52, in <listcomp>
+[rank0]:     data = [self.dataset[idx] for idx in possibly_batched_index]
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchvision/datasets/folder.py", line 245, in __getitem__
+[rank0]:     sample = self.loader(path)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchvision/datasets/folder.py", line 284, in default_loader
+[rank0]:     return pil_loader(path)
+[rank0]:   File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchvision/datasets/folder.py", line 262, in pil_loader
+[rank0]:     with open(path, "rb") as f:
+[rank0]: FileNotFoundError: [Errno 2] No such file or directory: '/network/scratch/o/ortizgas/data/milabench/data/FakeImageNet/train/639/639_1143600.JPEG'
+
+W1210 22:59:02.222117 140323605866304 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 3550065 closing signal SIGTERM
+W1210 22:59:02.222426 140323605866304 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 3550065 closing signal SIGTERM
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 680, in run
+    result = self._invoke_run(role)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 836, in _invoke_run
+    run_result = self._monitor_workers(self._worker_group)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", line 367, in _monitor_workers
+    result = self._pcontext.wait(0)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 503, in wait
+    return self._poll()
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 825, in _poll
+    self.close()  # terminate all running procs
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 544, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 861, in _close
+    handler.close(death_sig=death_sig)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/subprocess_handler/subprocess_handler.py", line 74, in close
+    os.killpg(self.proc.pid, death_sig)
+ProcessLookupError: [Errno 3] No such process
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/benchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmate/benchmate/benchrun.py", line 68, in main
+    run(args)
+  File "/home/mila/o/ortizgas/CODE/milabench/benchmate/benchmate/benchrun.py", line 63, in run
+    distrun.run(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 255, in launch_agent
+    result = agent.run()
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 694, in run
+    self._shutdown()
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", line 347, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 544, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 861, in _close
+    handler.close(death_sig=death_sig)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/subprocess_handler/subprocess_handler.py", line 74, in close
+    os.killpg(self.proc.pid, death_sig)
+ProcessLookupError: [Errno 3] No such process

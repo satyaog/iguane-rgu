@@ -1,0 +1,311 @@
+{"event": "config", "data": {"system": {"arch": "cuda", "sshkey": null, "nodes": [{"name": "local", "ip": "127.0.0.1", "sshport": 22, "user": "root", "main": true, "hostname": "cn-n001.server.mila.quebec", "local": true}], "self": {"name": "local", "ip": "127.0.0.1", "sshport": 22, "user": "root", "main": true, "hostname": "cn-n001.server.mila.quebec", "local": true}}, "dirs": {"base": "/network/scratch/o/ortizgas/data/milabench", "venv": "/network/scratch/o/ortizgas/data/milabench/venv/torch", "data": "/network/scratch/o/ortizgas/data/milabench/data", "runs": "/network/scratch/o/ortizgas/data/milabench/runs", "extra": "/network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus", "cache": "/network/scratch/o/ortizgas/data/milabench/cache"}, "group": "llm-lora-mp-gpus", "install_group": "torch", "install_variant": "cuda", "run_name": "NVIDIA-H100-80GB-HBM3_llm-lora-mp-gpus_16.staging", "enabled": true, "capabilities": {"nodes": 1}, "max_duration": 1200, "voir": {"options": {"stop": 30, "interval": "1s"}}, "validation": {"usage": {"gpu_load_threshold": 0.5, "gpu_mem_threshold": 0.5}}, "config_base": "/home/mila/o/ortizgas/CODE/milabench/config", "config_file": "/home/mila/o/ortizgas/CODE/milabench/config/standard.yaml", "tags": ["llm", "multigpu", "nlp"], "num_machines": 1, "definition": "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm", "plan": {"method": "njobs", "n": 1}, "argv": {"{milabench_code}/recipes/lora_finetune_distributed.py": true, "--config": "{milabench_code}/configs/llama3_70B_lora.yaml", "epochs=1": true, "output_dir={milabench_extra}/output": true, "tokenizer.path={milabench_data}/llama3_70B/original/tokenizer.model": true, "checkpointer.checkpoint_dir={milabench_data}/llama3_70B": true, "checkpointer.output_dir={milabench_data}/llama3_70B/": true, "safetensors=true": true, "metric_logger.log_dir={milabench_extra}/metrics": true, "repo_id=\"meta-llama/Meta-Llama-3.1-70B\"": true, "batch_size=8": true, "gradient_accumulation_steps=1": true}, "weight": 1.0, "name": "llm-lora-mp-gpus", "tag": ["llm-lora-mp-gpus", "0"], "job-number": 0, "devices": [0, 1, 2, 3]}, "pipe": null}
+{"event": "meta", "data": {"cpu": {"count": 192, "brand": "AMD EPYC 9654 96-Core Processor"}, "os": {"sysname": "Linux", "nodename": "cn-n001.server.mila.quebec", "release": "5.15.0-101-generic", "version": "#111-Ubuntu SMP Tue Mar 5 20:16:58 UTC 2024", "machine": "x86_64"}, "accelerators": {"arch": "cuda", "gpus": {"0": {"minor_number": "0", "device": 0, "product": "NVIDIA H100 80GB HBM3", "memory": {"used": 215.5625, "total": 81559.0}, "utilization": {"compute": 0.0, "memory": 0}, "temperature": 35.0, "power": 101.753, "selection_variable": "CUDA_VISIBLE_DEVICES"}, "1": {"minor_number": "1", "device": 1, "product": "NVIDIA H100 80GB HBM3", "memory": {"used": 215.5625, "total": 81559.0}, "utilization": {"compute": 0.0, "memory": 0}, "temperature": 46.0, "power": 102.662, "selection_variable": "CUDA_VISIBLE_DEVICES"}, "2": {"minor_number": "2", "device": 2, "product": "NVIDIA H100 80GB HBM3", "memory": {"used": 215.5625, "total": 81559.0}, "utilization": {"compute": 0.0, "memory": 0}, "temperature": 46.0, "power": 103.667, "selection_variable": "CUDA_VISIBLE_DEVICES"}, "3": {"minor_number": "3", "device": 3, "product": "NVIDIA H100 80GB HBM3", "memory": {"used": 215.5625, "total": 81559.0}, "utilization": {"compute": 0.0, "memory": 0}, "temperature": 36.0, "power": 99.026, "selection_variable": "CUDA_VISIBLE_DEVICES"}}}, "date": 1733953792.582479, "milabench": {"tag": "v1.0.0_RC1-13-g7a90b16", "commit": "7a90b1691650232ecd63abded0b7be84bb294c05", "date": "2024-11-08 11:28:56 -0500"}, "pytorch": {"torch": "2.4.0+cu121", "compiler": "GCC 9.3", "cpp": "C++ Version: 201703", "intel": "Intel(R) oneAPI Math Kernel Library Version 2022.2-Product Build 20220804 for Intel(R) 64 architecture applications", "mkl": "OpenMP 201511 (a.k.a. OpenMP 4.5)", "openmp": "OpenMP 201511 (a.k.a. OpenMP 4.5)", "lapack": "LAPACK is enabled (usually provided by MKL)", "nnpack": "NNPACK is enabled", "cpu": "CPU capability usage: AVX512", "build_settings": {"BLAS_INFO": "mkl", "BUILD_TYPE": "Release", "CUDA_VERSION": "12.1", "CUDNN_VERSION": "9.1.0", "CXX_COMPILER": "/opt/rh/devtoolset-9/root/usr/bin/c++", "CXX_FLAGS": "-D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow", "LAPACK_INFO": "mkl", "PERF_WITH_AVX": "1", "PERF_WITH_AVX2": "1", "PERF_WITH_AVX512": "1", "TORCH_VERSION": "2.4.0", "USE_CUDA": "ON", "USE_CUDNN": "ON", "USE_CUSPARSELT": "1", "USE_EXCEPTION_PTR": "1", "USE_GFLAGS": "OFF", "USE_GLOG": "OFF", "USE_GLOO": "ON", "USE_MKL": "ON", "USE_MKLDNN": "ON", "USE_MPI": "OFF", "USE_NCCL": "1", "USE_NNPACK": "ON", "USE_OPENMP": "ON", "USE_ROCM": "OFF", "USE_ROCM_KERNEL_ASSERT": "OFF"}}}, "pipe": null}
+{"event": "start", "data": {"command": ["/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/tune", "run", "--nnodes=1", "--rdzv-backend=static", "--rdzv-endpoint=cn-n001.server.mila.quebec:29400", "--master-addr=cn-n001.server.mila.quebec", "--master-port=29400", "--local-ranks-filter=0", "--nproc-per-node=4", "--", "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py", "--config", "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/configs/llama3_70B_lora.yaml", "epochs=1", "output_dir=/network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/output", "tokenizer.path=/network/scratch/o/ortizgas/data/milabench/data/llama3_70B/original/tokenizer.model", "checkpointer.checkpoint_dir=/network/scratch/o/ortizgas/data/milabench/data/llama3_70B", "checkpointer.output_dir=/network/scratch/o/ortizgas/data/milabench/data/llama3_70B/", "safetensors=true", "metric_logger.log_dir=/network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/metrics", "repo_id=\"meta-llama/Meta-Llama-3.1-70B\"", "batch_size=16", "gradient_accumulation_steps=1"], "time": 1733935792.6407285}, "pipe": null}
+{"event": "line", "data": "Running with torchrun...\n", "pipe": "stdout"}
+{"event": "line", "data": "INFO:torchtune.utils.logging:Running LoRAFinetuneRecipeDistributed with resolved config:\n", "pipe": "stderr"}
+{"event": "line", "data": "\n", "pipe": "stderr"}
+{"event": "line", "data": "batch_size: 16\n", "pipe": "stderr"}
+{"event": "line", "data": "checkpointer:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torchtune.utils.FullModelHFCheckpointer\n", "pipe": "stderr"}
+{"event": "line", "data": "  checkpoint_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B\n", "pipe": "stderr"}
+{"event": "line", "data": "  checkpoint_files:\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00001-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00002-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00003-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00004-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00005-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00006-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00007-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00008-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00009-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00010-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00011-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00012-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00013-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00014-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00015-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00016-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00017-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00018-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00019-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00020-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00021-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00022-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00023-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00024-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00025-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00026-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00027-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00028-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00029-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  - model-00030-of-00030.safetensors\n", "pipe": "stderr"}
+{"event": "line", "data": "  model_type: LLAMA3\n", "pipe": "stderr"}
+{"event": "line", "data": "  output_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B/\n", "pipe": "stderr"}
+{"event": "line", "data": "  recipe_checkpoint: null\n", "pipe": "stderr"}
+{"event": "line", "data": "dataset:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torchtune.datasets.alpaca_dataset\n", "pipe": "stderr"}
+{"event": "line", "data": "device: cuda\n", "pipe": "stderr"}
+{"event": "line", "data": "dtype: bf16\n", "pipe": "stderr"}
+{"event": "line", "data": "enable_activation_checkpointing: true\n", "pipe": "stderr"}
+{"event": "line", "data": "epochs: 1\n", "pipe": "stderr"}
+{"event": "line", "data": "gradient_accumulation_steps: 1\n", "pipe": "stderr"}
+{"event": "line", "data": "log_every_n_steps: 1\n", "pipe": "stderr"}
+{"event": "line", "data": "log_peak_memory_stats: false\n", "pipe": "stderr"}
+{"event": "line", "data": "loss:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torch.nn.CrossEntropyLoss\n", "pipe": "stderr"}
+{"event": "line", "data": "lr_scheduler:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torchtune.modules.get_cosine_schedule_with_warmup\n", "pipe": "stderr"}
+{"event": "line", "data": "  num_warmup_steps: 100\n", "pipe": "stderr"}
+{"event": "line", "data": "max_steps_per_epoch: null\n", "pipe": "stderr"}
+{"event": "line", "data": "metric_logger:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torchtune.utils.metric_logging.DiskLogger\n", "pipe": "stderr"}
+{"event": "line", "data": "  log_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/metrics\n", "pipe": "stderr"}
+{"event": "line", "data": "model:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torchtune.models.llama3_1.lora_llama3_1_70b\n", "pipe": "stderr"}
+{"event": "line", "data": "  apply_lora_to_mlp: false\n", "pipe": "stderr"}
+{"event": "line", "data": "  apply_lora_to_output: false\n", "pipe": "stderr"}
+{"event": "line", "data": "  lora_alpha: 32\n", "pipe": "stderr"}
+{"event": "line", "data": "  lora_attn_modules:\n", "pipe": "stderr"}
+{"event": "line", "data": "  - q_proj\n", "pipe": "stderr"}
+{"event": "line", "data": "  - k_proj\n", "pipe": "stderr"}
+{"event": "line", "data": "  - v_proj\n", "pipe": "stderr"}
+{"event": "line", "data": "  lora_rank: 16\n", "pipe": "stderr"}
+{"event": "line", "data": "optimizer:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torch.optim.AdamW\n", "pipe": "stderr"}
+{"event": "line", "data": "  lr: 0.0003\n", "pipe": "stderr"}
+{"event": "line", "data": "  weight_decay: 0.01\n", "pipe": "stderr"}
+{"event": "line", "data": "output_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/output\n", "pipe": "stderr"}
+{"event": "line", "data": "repo_id: meta-llama/Meta-Llama-3.1-70B\n", "pipe": "stderr"}
+{"event": "line", "data": "resume_from_checkpoint: false\n", "pipe": "stderr"}
+{"event": "line", "data": "safetensors: true\n", "pipe": "stderr"}
+{"event": "line", "data": "save_adapter_weights_only: false\n", "pipe": "stderr"}
+{"event": "line", "data": "seed: null\n", "pipe": "stderr"}
+{"event": "line", "data": "shuffle: true\n", "pipe": "stderr"}
+{"event": "line", "data": "tokenizer:\n", "pipe": "stderr"}
+{"event": "line", "data": "  _component_: torchtune.models.llama3.llama3_tokenizer\n", "pipe": "stderr"}
+{"event": "line", "data": "  path: /network/scratch/o/ortizgas/data/milabench/data/llama3_70B/original/tokenizer.model\n", "pipe": "stderr"}
+{"event": "line", "data": "\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'libefa-rdmav34.so': libefa-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'libirdma-rdmav34.so': libirdma-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'libipathverbs-rdmav34.so': libipathverbs-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'libocrdma-rdmav34.so': libocrdma-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'libmlx4-rdmav34.so': libmlx4-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'libbnxt_re-rdmav34.so': libbnxt_re-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'libhns-rdmav34.so': libhns-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'libmthca-rdmav34.so': libmthca-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'libhfi1verbs-rdmav34.so': libhfi1verbs-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'librxe-rdmav34.so': librxe-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'libqedr-rdmav34.so': libqedr-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'libvmw_pvrdma-rdmav34.so': libvmw_pvrdma-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'libcxgb4-rdmav34.so': libcxgb4-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "libibverbs: Warning: couldn't load driver 'libsiw-rdmav34.so': libsiw-rdmav34.so: cannot open shared object file: No such file or directory\n", "pipe": "stderr"}
+{"event": "line", "data": "DEBUG:torchtune.utils.logging:Setting manual seed to local seed 2968319507. Local seed is seed + rank = 2968319507 + 0\n", "pipe": "stderr"}
+{"event": "line", "data": "Writing logs to /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/metrics/log_1733935815.txt\n", "pipe": "stdout"}
+{"event": "line", "data": "INFO:torchtune.utils.logging:FSDP is enabled. Instantiating Model on CPU for Rank 0 ...\n", "pipe": "stderr"}
+{"event": "line", "data": "INFO:torchtune.utils.logging:Model instantiation took 36.73 secs\n", "pipe": "stderr"}
+{"event": "line", "data": "INFO:torchtune.utils.logging:Memory stats after model init:\n", "pipe": "stderr"}
+{"event": "line", "data": "\tGPU peak memory allocation: 43.79 GB\n", "pipe": "stderr"}
+{"event": "line", "data": "\tGPU peak memory reserved: 48.79 GB\n", "pipe": "stderr"}
+{"event": "line", "data": "\tGPU peak memory active: 43.79 GB\n", "pipe": "stderr"}
+{"event": "line", "data": "INFO:torchtune.utils.logging:Optimizer and loss are initialized.\n", "pipe": "stderr"}
+{"event": "line", "data": "INFO:torchtune.utils.logging:Dataset and Sampler are initialized.\n", "pipe": "stderr"}
+{"event": "line", "data": "INFO:torchtune.utils.logging:Learning rate scheduler is initialized.\n", "pipe": "stderr"}
+{"event": "line", "data": "WARNING:torchtune.utils.logging: Profiling disabled.\n", "pipe": "stderr"}
+{"event": "line", "data": "INFO:torchtune.utils.logging: Profiler config after instantiation: {'enabled': False}\n", "pipe": "stderr"}
+{"event": "line", "data": "No overseer found\n", "pipe": "stdout"}
+{"event": "line", "data": "\r  0%|          | 0/813 [00:00<?, ?it/s]", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [0, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.\n", "pipe": "stderr"}
+{"event": "line", "data": "  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]\n", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [1, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r  0%|          | 1/813 [00:06<1:24:46,  6.26s/it]", "pipe": "stderr"}
+{"event": "line", "data": "\r1|1|Loss: 13.404984474182129:   0%|          | 1/813 [00:06<1:24:46,  6.26s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733935886.2191505, "gpudata": {"0": {"memory": [68448.5625, 81559.0], "load": 0.99, "temperature": 45.0, "power": 587.759}, "1": {"memory": [69056.5625, 81559.0], "load": 0.94, "temperature": 49.0, "power": 670.314}, "2": {"memory": [63630.5625, 81559.0], "load": 0.99, "temperature": 50.0, "power": 592.086}, "3": {"memory": [60638.5625, 81559.0], "load": 1.0, "temperature": 43.0, "power": 501.909}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935886.2191505, "iodata": {"read_count": 0, "write_count": 61, "read_bytes": 0, "read_time": 0, "write_time": 1, "busy_time": 56}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935886.2191505, "netdata": {"bytes_sent": 72685741848920, "bytes_recv": 72696502410385, "packets_sent": 1583444883, "packets_recv": 1590603271, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935886.2191505, "cpudata": {"memory": [76522123264, 2434746851328], "load": 0.0}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [2, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|1|Loss: 13.404984474182129:   0%|          | 2/813 [00:10<1:11:32,  5.29s/it]", "pipe": "stderr"}
+{"event": "line", "data": "\r1|2|Loss: 13.417990684509277:   0%|          | 2/813 [00:10<1:11:32,  5.29s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [3, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|2|Loss: 13.417990684509277:   0%|          | 3/813 [00:16<1:10:33,  5.23s/it]\r1|3|Loss: 13.39804458618164:   0%|          | 3/813 [00:16<1:10:33,  5.23s/it] ", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733935896.2363482, "gpudata": {"0": {"memory": [68448.5625, 81559.0], "load": 1.0, "temperature": 40.0, "power": 397.562}, "1": {"memory": [69056.5625, 81559.0], "load": 1.0, "temperature": 43.0, "power": 328.527}, "2": {"memory": [73006.5625, 81559.0], "load": 1.0, "temperature": 49.0, "power": 508.808}, "3": {"memory": [81158.5625, 81559.0], "load": 0.97, "temperature": 47.0, "power": 665.503}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935896.2363482, "iodata": {"read_count": 0, "write_count": 129, "read_bytes": 0, "read_time": 0, "write_time": 4, "busy_time": 112}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935896.2363482, "netdata": {"bytes_sent": 72685741860780, "bytes_recv": 72696502422549, "packets_sent": 1583444934, "packets_recv": 1590603317, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935896.2363482, "cpudata": {"memory": [78199549952, 2434746851328], "load": 12.1}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [4, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|3|Loss: 13.39804458618164:   0%|          | 4/813 [00:23<1:22:42,  6.13s/it]\r1|4|Loss: 13.413470268249512:   0%|          | 4/813 [00:23<1:22:42,  6.13s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [5, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|4|Loss: 13.413470268249512:   1%|          | 5/813 [00:27<1:13:20,  5.45s/it]\r1|5|Loss: 13.378986358642578:   1%|          | 5/813 [00:27<1:13:20,  5.45s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733935906.2558541, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 0.99, "temperature": 42.0, "power": 629.277}, "1": {"memory": [69056.5625, 81559.0], "load": 1.0, "temperature": 47.0, "power": 547.389}, "2": {"memory": [73006.5625, 81559.0], "load": 1.0, "temperature": 49.0, "power": 463.765}, "3": {"memory": [81158.5625, 81559.0], "load": 1.0, "temperature": 42.0, "power": 468.742}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935906.2558541, "iodata": {"read_count": 0, "write_count": 404, "read_bytes": 0, "read_time": 0, "write_time": 13, "busy_time": 248}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935906.2558541, "netdata": {"bytes_sent": 72685741921423, "bytes_recv": 72696502455017, "packets_sent": 1583445011, "packets_recv": 1590603382, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935906.2558541, "cpudata": {"memory": [76577271808, 2434746851328], "load": 15.4}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [6, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|5|Loss: 13.378986358642578:   1%|          | 6/813 [00:33<1:15:50,  5.64s/it]\r1|6|Loss: 13.396675109863281:   1%|          | 6/813 [00:33<1:15:50,  5.64s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [7, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|6|Loss: 13.396675109863281:   1%|          | 7/813 [00:38<1:11:22,  5.31s/it]\r1|7|Loss: 13.354436874389648:   1%|          | 7/813 [00:38<1:11:22,  5.31s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733935916.2732189, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 0.95, "temperature": 53.0, "power": 638.755}, "1": {"memory": [69056.5625, 81559.0], "load": 1.0, "temperature": 57.0, "power": 558.436}, "2": {"memory": [73006.5625, 81559.0], "load": 1.0, "temperature": 61.0, "power": 609.405}, "3": {"memory": [81158.5625, 81559.0], "load": 1.0, "temperature": 52.0, "power": 547.832}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935916.2732189, "iodata": {"read_count": 0, "write_count": 447, "read_bytes": 0, "read_time": 0, "write_time": 14, "busy_time": 296}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935916.2732189, "netdata": {"bytes_sent": 72685742005123, "bytes_recv": 72696502469785, "packets_sent": 1583445113, "packets_recv": 1590603452, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935916.2732189, "cpudata": {"memory": [76514938880, 2434746851328], "load": 5.1}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [8, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|7|Loss: 13.354436874389648:   1%|          | 8/813 [00:43<1:08:50,  5.13s/it]\r1|8|Loss: 13.36061954498291:   1%|          | 8/813 [00:43<1:08:50,  5.13s/it] ", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [9, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|8|Loss: 13.36061954498291:   1%|          | 9/813 [00:47<1:07:01,  5.00s/it]\r1|9|Loss: 13.326459884643555:   1%|          | 9/813 [00:47<1:07:01,  5.00s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733935926.2912107, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 1.0, "temperature": 45.0, "power": 426.123}, "1": {"memory": [69056.5625, 81559.0], "load": 1.0, "temperature": 52.0, "power": 463.48}, "2": {"memory": [73006.5625, 81559.0], "load": 0.99, "temperature": 59.0, "power": 696.734}, "3": {"memory": [81158.5625, 81559.0], "load": 1.0, "temperature": 47.0, "power": 393.643}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935926.2912107, "iodata": {"read_count": 0, "write_count": 499, "read_bytes": 0, "read_time": 0, "write_time": 15, "busy_time": 352}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935926.2912107, "netdata": {"bytes_sent": 72685742017729, "bytes_recv": 72696502486439, "packets_sent": 1583445169, "packets_recv": 1590603503, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935926.2912107, "cpudata": {"memory": [76504420352, 2434746851328], "load": 5.1}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [10, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|9|Loss: 13.326459884643555:   1%|          | 10/813 [00:55<1:18:13,  5.85s/it]\r1|10|Loss: 13.309636116027832:   1%|          | 10/813 [00:55<1:18:13,  5.85s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [11, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|10|Loss: 13.309636116027832:   1%|\u258f         | 11/813 [00:59<1:11:29,  5.35s/it]", "pipe": "stderr"}
+{"event": "line", "data": "\r1|11|Loss: 13.283064842224121:   1%|\u258f         | 11/813 [00:59<1:11:29,  5.35s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733935936.3381414, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 0.82, "temperature": 52.0, "power": 658.199}, "1": {"memory": [69056.5625, 81559.0], "load": 0.87, "temperature": 60.0, "power": 633.62}, "2": {"memory": [79980.5625, 81559.0], "load": 0.88, "temperature": 60.0, "power": 618.665}, "3": {"memory": [81158.5625, 81559.0], "load": 0.99, "temperature": 45.0, "power": 516.252}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935936.3381414, "iodata": {"read_count": 0, "write_count": 572, "read_bytes": 0, "read_time": 0, "write_time": 16, "busy_time": 400}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935936.3381414, "netdata": {"bytes_sent": 72685742080217, "bytes_recv": 72696502524771, "packets_sent": 1583445262, "packets_recv": 1590603581, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935936.3381414, "cpudata": {"memory": [78621339648, 2434746851328], "load": 7.0}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [12, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|11|Loss: 13.283064842224121:   1%|\u258f         | 12/813 [01:05<1:13:29,  5.50s/it]\r1|12|Loss: 13.194808959960938:   1%|\u258f         | 12/813 [01:05<1:13:29,  5.50s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733935946.3583703, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 0.95, "temperature": 51.0, "power": 668.879}, "1": {"memory": [77542.5625, 81559.0], "load": 0.99, "temperature": 58.0, "power": 635.032}, "2": {"memory": [79980.5625, 81559.0], "load": 0.98, "temperature": 60.0, "power": 666.098}, "3": {"memory": [81158.5625, 81559.0], "load": 0.98, "temperature": 49.0, "power": 638.034}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935946.3583703, "iodata": {"read_count": 0, "write_count": 637, "read_bytes": 0, "read_time": 0, "write_time": 25, "busy_time": 484}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935946.3583703, "netdata": {"bytes_sent": 72685742161920, "bytes_recv": 72696502537551, "packets_sent": 1583445353, "packets_recv": 1590603643, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935946.3583703, "cpudata": {"memory": [77899124736, 2434746851328], "load": 15.5}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [13, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|12|Loss: 13.194808959960938:   2%|\u258f         | 13/813 [01:10<1:12:10,  5.41s/it]\r1|13|Loss: 13.118770599365234:   2%|\u258f         | 13/813 [01:10<1:12:10,  5.41s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [14, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|13|Loss: 13.118770599365234:   2%|\u258f         | 14/813 [01:15<1:09:19,  5.21s/it]\r1|14|Loss: 12.878220558166504:   2%|\u258f         | 14/813 [01:15<1:09:19,  5.21s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733935956.3773463, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 1.0, "temperature": 47.0, "power": 517.611}, "1": {"memory": [78358.5625, 81559.0], "load": 0.97, "temperature": 61.0, "power": 667.314}, "2": {"memory": [79980.5625, 81559.0], "load": 1.0, "temperature": 57.0, "power": 415.321}, "3": {"memory": [81158.5625, 81559.0], "load": 1.0, "temperature": 44.0, "power": 342.384}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935956.3773463, "iodata": {"read_count": 0, "write_count": 687, "read_bytes": 0, "read_time": 0, "write_time": 27, "busy_time": 516}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935956.3773463, "netdata": {"bytes_sent": 72685742173200, "bytes_recv": 72696502548959, "packets_sent": 1583445397, "packets_recv": 1590603685, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935956.3773463, "cpudata": {"memory": [76476231680, 2434746851328], "load": 10.2}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [15, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|14|Loss: 12.878220558166504:   2%|\u258f         | 15/813 [01:23<1:18:36,  5.91s/it]\r1|15|Loss: 12.560710906982422:   2%|\u258f         | 15/813 [01:23<1:18:36,  5.91s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [16, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|15|Loss: 12.560710906982422:   2%|\u258f         | 16/813 [01:28<1:15:40,  5.70s/it]\r1|16|Loss: 12.344573974609375:   2%|\u258f         | 16/813 [01:28<1:15:40,  5.70s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733935966.403217, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 1.0, "temperature": 48.0, "power": 513.5}, "1": {"memory": [78392.5625, 81559.0], "load": 0.98, "temperature": 65.0, "power": 691.383}, "2": {"memory": [79980.5625, 81559.0], "load": 1.0, "temperature": 61.0, "power": 642.291}, "3": {"memory": [81158.5625, 81559.0], "load": 1.0, "temperature": 50.0, "power": 566.148}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935966.403217, "iodata": {"read_count": 0, "write_count": 740, "read_bytes": 0, "read_time": 0, "write_time": 28, "busy_time": 572}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935966.403217, "netdata": {"bytes_sent": 72685742234539, "bytes_recv": 72696502582383, "packets_sent": 1583445483, "packets_recv": 1590603756, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935966.403217, "cpudata": {"memory": [76487077888, 2434746851328], "load": 5.2}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [17, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|16|Loss: 12.344573974609375:   2%|\u258f         | 17/813 [01:34<1:17:48,  5.87s/it]", "pipe": "stderr"}
+{"event": "line", "data": "\r1|17|Loss: 11.709033012390137:   2%|\u258f         | 17/813 [01:34<1:17:48,  5.87s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [18, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|17|Loss: 11.709033012390137:   2%|\u258f         | 18/813 [01:38<1:11:11,  5.37s/it]\r1|18|Loss: 11.728777885437012:   2%|\u258f         | 18/813 [01:38<1:11:11,  5.37s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733935976.4454815, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 1.0, "temperature": 52.0, "power": 639.15}, "1": {"memory": [78392.5625, 81559.0], "load": 1.0, "temperature": 64.0, "power": 661.607}, "2": {"memory": [79980.5625, 81559.0], "load": 1.0, "temperature": 62.0, "power": 624.952}, "3": {"memory": [81158.5625, 81559.0], "load": 0.96, "temperature": 53.0, "power": 692.483}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935976.4454815, "iodata": {"read_count": 0, "write_count": 825, "read_bytes": 0, "read_time": 0, "write_time": 30, "busy_time": 644}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935976.4454815, "netdata": {"bytes_sent": 72685742318855, "bytes_recv": 72696502605701, "packets_sent": 1583445602, "packets_recv": 1590603849, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935976.4454815, "cpudata": {"memory": [76477681664, 2434746851328], "load": 5.2}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [19, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|18|Loss: 11.728777885437012:   2%|\u258f         | 19/813 [01:43<1:08:44,  5.19s/it]\r1|19|Loss: 11.181139945983887:   2%|\u258f         | 19/813 [01:43<1:08:44,  5.19s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [20, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|19|Loss: 11.181139945983887:   2%|\u258f         | 20/813 [01:48<1:08:33,  5.19s/it]\r1|20|Loss: 11.064010620117188:   2%|\u258f         | 20/813 [01:48<1:08:33,  5.19s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733935986.5073793, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 0.96, "temperature": 53.0, "power": 671.886}, "1": {"memory": [78392.5625, 81559.0], "load": 1.0, "temperature": 62.0, "power": 523.501}, "2": {"memory": [79980.5625, 81559.0], "load": 1.0, "temperature": 60.0, "power": 594.516}, "3": {"memory": [81158.5625, 81559.0], "load": 1.0, "temperature": 51.0, "power": 598.868}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935986.5073793, "iodata": {"read_count": 0, "write_count": 958, "read_bytes": 0, "read_time": 0, "write_time": 37, "busy_time": 796}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935986.5073793, "netdata": {"bytes_sent": 72685742330589, "bytes_recv": 72696502617825, "packets_sent": 1583445653, "packets_recv": 1590603901, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935986.5073793, "cpudata": {"memory": [78285156352, 2434746851328], "load": 12.6}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [21, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|20|Loss: 11.064010620117188:   3%|\u258e         | 21/813 [01:53<1:07:46,  5.13s/it]\r1|21|Loss: 11.032164573669434:   3%|\u258e         | 21/813 [01:53<1:07:46,  5.13s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [22, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|21|Loss: 11.032164573669434:   3%|\u258e         | 22/813 [01:58<1:07:16,  5.10s/it]\r1|22|Loss: 11.02698802947998:   3%|\u258e         | 22/813 [01:58<1:07:16,  5.10s/it] ", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733935996.5254292, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 1.0, "temperature": 48.0, "power": 461.2}, "1": {"memory": [78392.5625, 81559.0], "load": 1.0, "temperature": 62.0, "power": 546.543}, "2": {"memory": [79980.5625, 81559.0], "load": 1.0, "temperature": 61.0, "power": 499.361}, "3": {"memory": [81158.5625, 81559.0], "load": 0.98, "temperature": 56.0, "power": 695.304}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935996.5254292, "iodata": {"read_count": 0, "write_count": 1095, "read_bytes": 0, "read_time": 0, "write_time": 55, "busy_time": 900}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935996.5254292, "netdata": {"bytes_sent": 72685742393348, "bytes_recv": 72696502651623, "packets_sent": 1583445746, "packets_recv": 1590603977, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733935996.5254292, "cpudata": {"memory": [76517326848, 2434746851328], "load": 15.0}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [23, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|22|Loss: 11.02698802947998:   3%|\u258e         | 23/813 [02:05<1:14:43,  5.68s/it]\r1|23|Loss: 9.879846572875977:   3%|\u258e         | 23/813 [02:05<1:14:43,  5.68s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733936006.5431519, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 0.99, "temperature": 48.0, "power": 532.759}, "1": {"memory": [78392.5625, 81559.0], "load": 0.99, "temperature": 61.0, "power": 590.236}, "2": {"memory": [79980.5625, 81559.0], "load": 1.0, "temperature": 61.0, "power": 575.617}, "3": {"memory": [81158.5625, 81559.0], "load": 0.93, "temperature": 55.0, "power": 670.481}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733936006.5431519, "iodata": {"read_count": 0, "write_count": 1122, "read_bytes": 0, "read_time": 0, "write_time": 55, "busy_time": 924}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733936006.5431519, "netdata": {"bytes_sent": 72685742476151, "bytes_recv": 72696502665005, "packets_sent": 1583445843, "packets_recv": 1590604045, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733936006.5431519, "cpudata": {"memory": [76514385920, 2434746851328], "load": 5.1}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [24, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|23|Loss: 9.879846572875977:   3%|\u258e         | 24/813 [02:10<1:10:30,  5.36s/it]\r1|24|Loss: 10.070585250854492:   3%|\u258e         | 24/813 [02:10<1:10:30,  5.36s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [25, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|24|Loss: 10.070585250854492:   3%|\u258e         | 25/813 [02:14<1:05:57,  5.02s/it]", "pipe": "stderr"}
+{"event": "line", "data": "\r1|25|Loss: 9.844734191894531:   3%|\u258e         | 25/813 [02:14<1:05:57,  5.02s/it] ", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733936016.5714903, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 1.0, "temperature": 50.0, "power": 513.94}, "1": {"memory": [78392.5625, 81559.0], "load": 1.0, "temperature": 60.0, "power": 461.443}, "2": {"memory": [79980.5625, 81559.0], "load": 1.0, "temperature": 61.0, "power": 488.544}, "3": {"memory": [81158.5625, 81559.0], "load": 0.96, "temperature": 55.0, "power": 672.902}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733936016.5714903, "iodata": {"read_count": 0, "write_count": 1195, "read_bytes": 0, "read_time": 0, "write_time": 57, "busy_time": 1004}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733936016.5714903, "netdata": {"bytes_sent": 72685742487605, "bytes_recv": 72696502676623, "packets_sent": 1583445890, "packets_recv": 1590604090, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733936016.5714903, "cpudata": {"memory": [76522946560, 2434746851328], "load": 5.1}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [26, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|25|Loss: 9.844734191894531:   3%|\u258e         | 26/813 [02:21<1:11:31,  5.45s/it]\r1|26|Loss: 10.692680358886719:   3%|\u258e         | 26/813 [02:21<1:11:31,  5.45s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [27, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|26|Loss: 10.692680358886719:   3%|\u258e         | 27/813 [02:26<1:12:04,  5.50s/it]\r1|27|Loss: 10.523029327392578:   3%|\u258e         | 27/813 [02:26<1:12:04,  5.50s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"task": "main", "time": 1733936026.5906398, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 0.95, "temperature": 50.0, "power": 621.367}, "1": {"memory": [78392.5625, 81559.0], "load": 0.96, "temperature": 63.0, "power": 629.907}, "2": {"memory": [79980.5625, 81559.0], "load": 0.89, "temperature": 64.0, "power": 662.923}, "3": {"memory": [81158.5625, 81559.0], "load": 0.94, "temperature": 54.0, "power": 639.764}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733936026.5906398, "iodata": {"read_count": 0, "write_count": 1237, "read_bytes": 0, "read_time": 0, "write_time": 57, "busy_time": 1036}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733936026.5906398, "netdata": {"bytes_sent": 72685742548967, "bytes_recv": 72696502710113, "packets_sent": 1583445976, "packets_recv": 1590604162, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733936026.5906398, "cpudata": {"memory": [78601748480, 2434746851328], "load": 7.3}}, "pipe": "data"}
+{"event": "data", "data": {"progress": [28, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|27|Loss: 10.523029327392578:   3%|\u258e         | 28/813 [02:30<1:04:17,  4.91s/it]\r1|28|Loss: 9.831250190734863:   3%|\u258e         | 28/813 [02:30<1:04:17,  4.91s/it] ", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [29, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|28|Loss: 9.831250190734863:   4%|\u258e         | 29/813 [02:34<1:03:05,  4.83s/it]\r1|29|Loss: 9.545499801635742:   4%|\u258e         | 29/813 [02:34<1:03:05,  4.83s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"progress": [30, 30], "task": "early_stop"}, "pipe": "data"}
+{"event": "line", "data": "\r1|29|Loss: 9.545499801635742:   4%|\u258e         | 30/813 [02:40<1:03:49,  4.89s/it]\r1|30|Loss: 9.569253921508789:   4%|\u258e         | 30/813 [02:40<1:03:49,  4.89s/it]", "pipe": "stderr"}
+{"event": "data", "data": {"loss": 13.404984474182129, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 13.417990684509277, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 13.39804458618164, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 13.413470268249512, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 13.378986358642578, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 13.396675109863281, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 13.354436874389648, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 13.36061954498291, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 13.326459884643555, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 13.309636116027832, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 13.283064842224121, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 13.194808959960938, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 13.118770599365234, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 12.878220558166504, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 12.560710906982422, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 12.344573974609375, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 11.709033012390137, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 11.728777885437012, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 11.181139945983887, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 11.064010620117188, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 11.032164573669434, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 11.02698802947998, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 9.879846572875977, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 10.070585250854492, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 9.844734191894531, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 10.692680358886719, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 10.523029327392578, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 9.831250190734863, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 9.545499801635742, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"loss": 9.569253921508789, "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2316.6507055748357, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 3066.290486467982, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 3024.0474419538127, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2414.9039768689963, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 3260.273706660454, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2660.555702786828, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 3200.849593104837, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 3084.6327777415013, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2669.4949800267277, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2207.4529149040936, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 3259.3597722511995, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2852.5050269143385, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 3686.987334929918, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 3037.2004379585574, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2432.6273937190986, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 3037.0448484591243, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2922.288558898623, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2913.867912467645, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2986.6319635322807, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2761.017481498555, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2739.3908923231625, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2973.6715546706023, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2423.529724745967, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 3041.2798336800092, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 3249.427263537042, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2778.8753239408898, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2901.432701940625, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 3164.54836818276, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "line", "data": "early stopping\n", "pipe": "stdout"}
+{"event": "line", "data": "\r1|30|Loss: 9.569253921508789:   4%|\u258e         | 30/813 [02:40<1:09:36,  5.33s/it]\n", "pipe": "stderr"}
+{"event": "data", "data": {"rate": 2568.916547699314, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"rate": 2521.9010117345233, "units": "items/s", "task": "train"}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733936036.6202526, "gpudata": {"0": {"memory": [77618.5625, 81559.0], "load": 0.0, "temperature": 42.0, "power": 398.244}, "1": {"memory": [78392.5625, 81559.0], "load": 0.0, "temperature": 52.0, "power": 388.502}, "2": {"memory": [79980.5625, 81559.0], "load": 0.0, "temperature": 54.0, "power": 536.594}, "3": {"memory": [81158.5625, 81559.0], "load": 0.0, "temperature": 41.0, "power": 347.607}}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733936036.6202526, "iodata": {"read_count": 0, "write_count": 1351, "read_bytes": 0, "read_time": 0, "write_time": 75, "busy_time": 1188}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733936036.6202526, "netdata": {"bytes_sent": 72685742631355, "bytes_recv": 72696502723891, "packets_sent": 1583446081, "packets_recv": 1590604241, "errin": 0, "errout": 0, "dropin": 0, "dropout": 0}}, "pipe": "data"}
+{"event": "data", "data": {"task": "main", "time": 1733936036.6202526, "cpudata": {"memory": [78504837120, 2434746851328], "load": 15.4}}, "pipe": "data"}
+{"event": "end", "data": {"command": ["/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/tune", "run", "--nnodes=1", "--rdzv-backend=static", "--rdzv-endpoint=cn-n001.server.mila.quebec:29400", "--master-addr=cn-n001.server.mila.quebec", "--master-port=29400", "--local-ranks-filter=0", "--nproc-per-node=4", "--", "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/recipes/lora_finetune_distributed.py", "--config", "/home/mila/o/ortizgas/CODE/milabench/benchmarks/llm/configs/llama3_70B_lora.yaml", "epochs=1", "output_dir=/network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/output", "tokenizer.path=/network/scratch/o/ortizgas/data/milabench/data/llama3_70B/original/tokenizer.model", "checkpointer.checkpoint_dir=/network/scratch/o/ortizgas/data/milabench/data/llama3_70B", "checkpointer.output_dir=/network/scratch/o/ortizgas/data/milabench/data/llama3_70B/", "safetensors=true", "metric_logger.log_dir=/network/scratch/o/ortizgas/data/milabench/extra/llm-lora-mp-gpus/metrics", "repo_id=\"meta-llama/Meta-Llama-3.1-70B\"", "batch_size=16", "gradient_accumulation_steps=1"], "time": 1733936039.1062117, "return_code": 0}, "pipe": null}

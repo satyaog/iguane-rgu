@@ -1,0 +1,111 @@
+INFO:torchtune.utils.logging:Running LoRAFinetuneRecipeDistributed with resolved config:
+
+batch_size: 2
+checkpointer:
+  _component_: torchtune.utils.FullModelMetaCheckpointer
+  checkpoint_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_8B/original
+  checkpoint_files:
+  - consolidated.00.pth
+  model_type: LLAMA3
+  output_dir: /network/scratch/o/ortizgas/data/milabench/data/llama3_8B/
+  recipe_checkpoint: null
+compile: false
+dataset:
+  _component_: torchtune.datasets.alpaca_cleaned_dataset
+device: cuda
+dtype: bf16
+enable_activation_checkpointing: true
+epochs: 1
+gradient_accumulation_steps: 8
+log_every_n_steps: 1
+log_peak_memory_stats: false
+loss:
+  _component_: torch.nn.CrossEntropyLoss
+lr_scheduler:
+  _component_: torchtune.modules.get_cosine_schedule_with_warmup
+  num_warmup_steps: 100
+max_steps_per_epoch: null
+metric_logger:
+  _component_: torchtune.utils.metric_logging.DiskLogger
+  log_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-ddp-gpus/metrics
+model:
+  _component_: torchtune.models.llama3_1.lora_llama3_1_8b
+  apply_lora_to_mlp: false
+  apply_lora_to_output: false
+  lora_alpha: 16
+  lora_attn_modules:
+  - q_proj
+  - v_proj
+  lora_rank: 8
+optimizer:
+  _component_: torch.optim.AdamW
+  lr: 0.0003
+  weight_decay: 0.01
+output_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-ddp-gpus/output
+profiler:
+  _component_: torchtune.utils.setup_torch_profiler
+  active_steps: 2
+  cpu: true
+  cuda: true
+  enabled: false
+  num_cycles: 1
+  output_dir: /network/scratch/o/ortizgas/data/milabench/extra/llm-lora-ddp-gpus/output/profiling_outputs
+  profile_memory: false
+  record_shapes: true
+  wait_steps: 5
+  warmup_steps: 5
+  with_flops: false
+  with_stack: false
+repo_id: meta-llama/Meta-Llama-3.1-8B
+resume_from_checkpoint: false
+seed: null
+shuffle: true
+tokenizer:
+  _component_: torchtune.models.llama3.llama3_tokenizer
+  path: /network/scratch/o/ortizgas/data/milabench/data/llama3_8B/original/tokenizer.model
+
+DEBUG:torchtune.utils.logging:Setting manual seed to local seed 3604683521. Local seed is seed + rank = 3604683521 + 0
+INFO:torchtune.utils.logging:FSDP is enabled. Instantiating Model on CPU for Rank 0 ...
+INFO:torchtune.utils.logging:Model instantiation took 26.13 secs
+INFO:torchtune.utils.logging:Memory stats after model init:
+	GPU peak memory allocation: 8.23 GB
+	GPU peak memory reserved: 9.80 GB
+	GPU peak memory active: 8.23 GB
+INFO:torchtune.utils.logging:Optimizer and loss are initialized.
+INFO:torchtune.utils.logging:Dataset and Sampler are initialized.
+INFO:torchtune.utils.logging:Learning rate scheduler is initialized.
+WARNING:torchtune.utils.logging: Profiling disabled.
+INFO:torchtune.utils.logging: Profiler config after instantiation: {'enabled': False}
+  0%|          | 0/808 [00:00<?, ?it/s]/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/utils/checkpoint.py:1399: FutureWarning: `torch.cpu.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cpu', args...)` instead.
+  with device_autocast_ctx, torch.cpu.amp.autocast(**cpu_autocast_kwargs), recompute_context:  # type: ignore[attr-defined]
+  0%|          | 1/808 [00:43<9:45:53, 43.56s/it]1|1|Loss: 11.761783599853516:   0%|          | 1/808 [00:43<9:45:53, 43.56s/it]1|1|Loss: 11.761783599853516:   0%|          | 2/808 [01:30<10:12:57, 45.63s/it]1|2|Loss: 11.761784553527832:   0%|          | 2/808 [01:30<10:12:57, 45.63s/it]1|2|Loss: 11.761784553527832:   0%|          | 3/808 [02:18<10:22:49, 46.42s/it]1|3|Loss: 11.761784553527832:   0%|          | 3/808 [02:18<10:22:49, 46.42s/it]1|3|Loss: 11.761784553527832:   0%|          | 4/808 [03:03<10:18:19, 46.14s/it]1|4|Loss: 11.761784553527832:   0%|          | 4/808 [03:03<10:18:19, 46.14s/it]1|4|Loss: 11.761784553527832:   1%|          | 5/808 [03:53<10:33:13, 47.31s/it]1|5|Loss: 11.761783599853516:   1%|          | 5/808 [03:53<10:33:13, 47.31s/it]1|5|Loss: 11.761783599853516:   1%|          | 6/808 [04:37<10:17:34, 46.20s/it]1|6|Loss: 11.761783599853516:   1%|          | 6/808 [04:37<10:17:34, 46.20s/it]1|6|Loss: 11.761783599853516:   1%|          | 7/808 [05:26<10:31:13, 47.28s/it]1|7|Loss: 11.761784553527832:   1%|          | 7/808 [05:26<10:31:13, 47.28s/it]1|7|Loss: 11.761784553527832:   1%|          | 8/808 [06:11<10:18:39, 46.40s/it]1|8|Loss: 11.761783599853516:   1%|          | 8/808 [06:11<10:18:39, 46.40s/it]1|8|Loss: 11.761783599853516:   1%|          | 9/808 [06:59<10:24:43, 46.91s/it]1|9|Loss: 11.761783599853516:   1%|          | 9/808 [06:59<10:24:43, 46.91s/it]1|9|Loss: 11.761783599853516:   1%|          | 10/808 [07:43<10:14:19, 46.19s/it]1|10|Loss: 11.761783599853516:   1%|          | 10/808 [07:43<10:14:19, 46.19s/it]1|10|Loss: 11.761783599853516:   1%|▏         | 11/808 [08:24<9:52:37, 44.61s/it] 1|11|Loss: 11.761783599853516:   1%|▏         | 11/808 [08:24<9:52:37, 44.61s/it]1|11|Loss: 11.761783599853516:   1%|▏         | 12/808 [09:08<9:46:46, 44.23s/it]1|12|Loss: 11.761783599853516:   1%|▏         | 12/808 [09:08<9:46:46, 44.23s/it]1|12|Loss: 11.761783599853516:   2%|▏         | 13/808 [09:52<9:45:08, 44.16s/it]1|13|Loss: 11.761785507202148:   2%|▏         | 13/808 [09:52<9:45:08, 44.16s/it]1|13|Loss: 11.761785507202148:   2%|▏         | 14/808 [10:35<9:42:59, 44.05s/it]1|14|Loss: 11.761783599853516:   2%|▏         | 14/808 [10:35<9:42:59, 44.05s/it]1|14|Loss: 11.761783599853516:   2%|▏         | 15/808 [11:19<9:40:51, 43.95s/it]1|15|Loss: 11.761783599853516:   2%|▏         | 15/808 [11:19<9:40:51, 43.95s/it]1|15|Loss: 11.761783599853516:   2%|▏         | 16/808 [12:01<9:33:35, 43.45s/it]1|16|Loss: 11.761783599853516:   2%|▏         | 16/808 [12:01<9:33:35, 43.45s/it]1|16|Loss: 11.761783599853516:   2%|▏         | 17/808 [12:45<9:32:37, 43.44s/it]1|17|Loss: 11.761783599853516:   2%|▏         | 17/808 [12:45<9:32:37, 43.44s/it]1|17|Loss: 11.761783599853516:   2%|▏         | 18/808 [13:29<9:34:01, 43.60s/it]1|18|Loss: 11.761783599853516:   2%|▏         | 18/808 [13:29<9:34:01, 43.60s/it]1|18|Loss: 11.761783599853516:   2%|▏         | 19/808 [14:14<9:38:31, 43.99s/it]1|19|Loss: 11.761783599853516:   2%|▏         | 19/808 [14:14<9:38:31, 43.99s/it]1|19|Loss: 11.761783599853516:   2%|▏         | 20/808 [14:57<9:36:39, 43.91s/it]1|20|Loss: 11.761783599853516:   2%|▏         | 20/808 [14:57<9:36:39, 43.91s/it]1|20|Loss: 11.761783599853516:   3%|▎         | 21/808 [15:44<9:47:54, 44.82s/it]1|21|Loss: 11.761784553527832:   3%|▎         | 21/808 [15:44<9:47:54, 44.82s/it]1|21|Loss: 11.761784553527832:   3%|▎         | 22/808 [16:32<9:57:11, 45.59s/it]1|22|Loss: 11.761783599853516:   3%|▎         | 22/808 [16:32<9:57:11, 45.59s/it]1|22|Loss: 11.761783599853516:   3%|▎         | 23/808 [17:22<10:14:46, 46.99s/it]1|23|Loss: 11.761783599853516:   3%|▎         | 23/808 [17:22<10:14:46, 46.99s/it]1|23|Loss: 11.761783599853516:   3%|▎         | 24/808 [18:08<10:10:28, 46.72s/it]1|24|Loss: 11.761783599853516:   3%|▎         | 24/808 [18:08<10:10:28, 46.72s/it]W1212 22:31:49.967331 139957333677184 torch/distributed/elastic/agent/server/api.py:688] Received Signals.SIGTERM death signal, shutting down workers
+W1212 22:31:49.968546 139957333677184 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 1561221 closing signal SIGTERM
+W1212 22:31:49.968895 139957333677184 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 1561222 closing signal SIGTERM
+W1212 22:31:49.969182 139957333677184 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 1561223 closing signal SIGTERM
+W1212 22:31:49.969578 139957333677184 torch/distributed/elastic/multiprocessing/api.py:858] Sending process 1561224 closing signal SIGTERM
+Traceback (most recent call last):
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/bin/tune", line 8, in <module>
+    sys.exit(main())
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/tune.py", line 49, in main
+    parser.run(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/tune.py", line 43, in run
+    args.func(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/run.py", line 177, in _run_cmd
+    self._run_distributed(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torchtune/_cli/run.py", line 88, in _run_distributed
+    run(args)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 255, in launch_agent
+    result = agent.run()
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in wrapper
+    result = f(*args, **kwargs)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 680, in run
+    result = self._invoke_run(role)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 835, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/network/scratch/o/ortizgas/data/milabench/venv/torch/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 79, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 1561017 got signal: 15
