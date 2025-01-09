@@ -1,17 +1,5 @@
 import pandas as pd
 
-try:
-    import tomllib as _
-except ModuleNotFoundError:
-    # iguane imports tomli from pip which might not be installed. To avoid
-    # import exceptions, add our custom tomllib which falls back to directly
-    # import tomli
-    from pathlib import Path
-    import sys
-
-    sys.path.append(str(Path(__file__).parent / "faketomllib"))
-    import tomllib as _
-
 from iguane.fom import RAWDATA, FIELDS
 
 MAPPING_IGUANE_MILA = {
